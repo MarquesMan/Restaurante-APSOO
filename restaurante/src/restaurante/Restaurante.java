@@ -5,17 +5,18 @@
  */
 package restaurante;
 
+import view.NovoPedido;
+
+
 /**
  *
  * @author pet
  */
-public class Restaurante {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+public class Restaurante{
+    
+        
+    public static void main(String[] args) {           
+        new NovoPedido();               
     }
     
 }
