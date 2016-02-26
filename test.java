@@ -1,4 +1,4 @@
-public class bunda{
+public class anus{
 
 	private long long int pinto; 
 
