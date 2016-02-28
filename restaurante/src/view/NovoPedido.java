@@ -5,6 +5,11 @@
  */
 package view;
 
+import controller.GerenciarMesa;
+import java.awt.event.ActionListener;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
 /**
  *
  * @author marqu
@@ -18,6 +23,17 @@ public class NovoPedido extends javax.swing.JFrame {
         initComponents();
         this.setVisible(true);
         this.setExtendedState(this.getExtendedState() | javax.swing.JFrame.MAXIMIZED_BOTH);
+        
+        ActionListener actionListener = new GerenciarMesa(this);
+        addMesa.addActionListener(actionListener);
+    }
+
+    public JLabel getMensagem() {
+        return mensagem;
+    }
+    
+    public JTextField getStatus_mesa() {
+        return status_mesa;
     }
 
     /**
@@ -29,6 +45,10 @@ public class NovoPedido extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        status_mesa = new javax.swing.JTextField();
+        addMesa = new javax.swing.JButton();
+        mensagem = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         Pedidos = new javax.swing.JMenu();
         Cliente = new javax.swing.JMenu();
@@ -39,6 +59,13 @@ public class NovoPedido extends javax.swing.JFrame {
         Cardapio = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        addMesa.setText("Inserir Mesa");
+
+        mensagem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mensagem.setToolTipText("");
+
+        jLabel1.setText("Status da Mesa:");
 
         Pedidos.setText("Pedidos");
         jMenuBar1.add(Pedidos);
@@ -73,11 +100,30 @@ public class NovoPedido extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 619, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(mensagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(status_mesa, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(addMesa)))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 359, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(mensagem)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(addMesa)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(status_mesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1)))
+                .addContainerGap(297, Short.MAX_VALUE))
         );
 
         pack();
@@ -96,6 +142,11 @@ public class NovoPedido extends javax.swing.JFrame {
     private javax.swing.JMenuItem Funcionarios;
     private javax.swing.JMenu Pedidos;
     private javax.swing.JMenu Reservas;
+    private javax.swing.JButton addMesa;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel mensagem;
+    private javax.swing.JTextField status_mesa;
     // End of variables declaration//GEN-END:variables
+
 }
