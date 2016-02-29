@@ -4,21 +4,21 @@
  * and open the template in the editor.
  */
 package restaurante;
-
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Pedidos;
+import view.NovoPedido;
 /**
  *
  * @author pet
  */
+
 public class Restaurante{
     
         
-    public static void main(String[] args){
-        Pedidos add = new Pedidos();
-        
-        add.addPessoa("gabryel", "054.533.201-09", "9105-2707");
+    public static void main(String[] args) {           
+        new NovoPedido();               
     }
     
 }
