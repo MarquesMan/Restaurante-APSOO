@@ -10,10 +10,9 @@ import java.util.logging.Logger;
  * @author pet
  */
 public class Conexao {
-    public Conexao () {    } //Possibilita instancias
-    public static Connection con = null;
- 
-    public static void Conectar() {
+    public Connection con = null;
+    
+    public Conexao () {
         System.out.println("Conectando ao banco...");
     
         try {
@@ -31,5 +30,5 @@ public class Conexao {
             System.out.println(e);
             throw new RuntimeException(e);
         }
-    }
+    } 
 }

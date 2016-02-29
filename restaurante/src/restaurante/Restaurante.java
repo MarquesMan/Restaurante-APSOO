@@ -5,6 +5,11 @@
  */
 package restaurante;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.Pedidos;
+
 /**
  *
  * @author pet
@@ -14,8 +19,10 @@ public class Restaurante {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static void main(String[] args){
+        Pedidos add = new Pedidos();
+        
+        add.addPessoa("gabryel", "054.533.201-09", "9105-2707");
     }
     
 }
