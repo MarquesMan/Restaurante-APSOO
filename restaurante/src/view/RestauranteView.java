@@ -11,6 +11,7 @@ import java.awt.Rectangle;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 /**
@@ -18,7 +19,7 @@ import javax.swing.JTextField;
  * @author marqu
  */
 public class RestauranteView extends javax.swing.JFrame {
-
+    GerenciarPedidos PedidosListener;
    
 
     /**
@@ -34,12 +35,13 @@ public class RestauranteView extends javax.swing.JFrame {
         this.setVisible(true);
         //this.setExtendedState(this.getExtendedState() | javax.swing.JFrame.MAXIMIZED_BOTH);
         
-        GerenciarPedidos PedidosListener = new GerenciarPedidos(this); 
+        PedidosListener = new GerenciarPedidos(this); 
         botaoPedido_Finalizar.addActionListener(PedidosListener);
         botaoPedido_Limpar.addActionListener(PedidosListener);
         botaoPedido_Salvar.addActionListener(PedidosListener);
         botaoPedido_Pesquisar.addActionListener(PedidosListener);
         metodoPesquisaPedido.addActionListener(PedidosListener);
+        InputPesquisa_Pedido.addActionListener(PedidosListener);
 
         jTabbedPane1.setUI(new javax.swing.plaf.basic.BasicTabbedPaneUI() {
             @Override protected int calculateTabHeight(
@@ -54,6 +56,8 @@ public class RestauranteView extends javax.swing.JFrame {
                 super.paintTab(g, tabPlacement, rects, tabIndex, iconRect, textRect);
             }
         });
+        
+        
     }
 
     public JComboBox getMetodoPesquisaPedido() {
@@ -72,8 +76,16 @@ public class RestauranteView extends javax.swing.JFrame {
         return InputPedido_Data;
     }
 
+    public JTable getTabelaPedido_Pesquisa() {
+        return TabelaPedido_Pesquisa;
+    }
+
     public JTextField getInputPedido_Desconto() {
         return InputPedido_Desconto;
+    }
+
+    public JTextField getInputPesquisa_Pedido() {
+        return InputPesquisa_Pedido;
     }
 
     public JTextField getInputPedido_Mesa() {
@@ -139,7 +151,7 @@ public class RestauranteView extends javax.swing.JFrame {
         TabelaPedido_Pesquisa = new javax.swing.JTable();
         botaoPedido_Pesquisar = new javax.swing.JButton();
         labelPedido_MetodoPesquisa = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        InputPesquisa_Pedido = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jPanelCliente = new javax.swing.JPanel();
         jPanelReservas = new javax.swing.JPanel();
@@ -244,15 +256,27 @@ public class RestauranteView extends javax.swing.JFrame {
 
         TabelaPedido_Pesquisa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Nome", "CPF", "Código", "Dispónivel"
+                "Código", "Nome", "CPF"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(TabelaPedido_Pesquisa);
 
         botaoPedido_Pesquisar.setText("Pesquisar");
@@ -260,7 +284,12 @@ public class RestauranteView extends javax.swing.JFrame {
         labelPedido_MetodoPesquisa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelPedido_MetodoPesquisa.setText("Cliente:");
 
-        jTextField1.setToolTipText("");
+        InputPesquisa_Pedido.setToolTipText("");
+        InputPesquisa_Pedido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                InputPesquisa_PedidoKeyReleased(evt);
+            }
+        });
 
         jLabel13.setText("Pesquisar por:");
 
@@ -322,11 +351,10 @@ public class RestauranteView extends javax.swing.JFrame {
                             .addGroup(jPanelPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(InputPedido_Cliente, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(InputPedido_Data, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)))
-                        .addGap(0, 8, Short.MAX_VALUE))
+                        .addGap(0, 6, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPedidoLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabel6)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelPedidoLayout.createSequentialGroup()
@@ -349,9 +377,9 @@ public class RestauranteView extends javax.swing.JFrame {
                                         .addGroup(jPanelPedidoLayout.createSequentialGroup()
                                             .addComponent(labelPedido_MetodoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(18, 18, 18)
-                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(InputPesquisa_Pedido, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(28, Short.MAX_VALUE))))))
+                                .addContainerGap(25, Short.MAX_VALUE))))))
         );
         jPanelPedidoLayout.setVerticalGroup(
             jPanelPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -395,9 +423,9 @@ public class RestauranteView extends javax.swing.JFrame {
                             .addComponent(radioPedido_PagamentoCartao)
                             .addComponent(radioPedido_PagamentoDinheiro))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanelPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(InputPedido_Troco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanelPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(InputPedido_Troco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                         .addGroup(jPanelPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(botaoPedido_Finalizar)
@@ -415,7 +443,7 @@ public class RestauranteView extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanelPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelPedido_MetodoPesquisa)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(InputPesquisa_Pedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botaoPedido_Pesquisar)
                         .addGap(16, 16, 16)
@@ -546,6 +574,10 @@ public class RestauranteView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_InputPedido_MesaActionPerformed
 
+    private void InputPesquisa_PedidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_InputPesquisa_PedidoKeyReleased
+        PedidosListener.lista_clientes();
+    }//GEN-LAST:event_InputPesquisa_PedidoKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField InputPedido_Cliente;
@@ -554,6 +586,7 @@ public class RestauranteView extends javax.swing.JFrame {
     private javax.swing.JTextField InputPedido_Mesa;
     private javax.swing.JTextField InputPedido_Preço;
     private javax.swing.JTextField InputPedido_Troco;
+    private javax.swing.JTextField InputPesquisa_Pedido;
     private javax.swing.JTable TabelaPedido_Pesquisa;
     private javax.swing.JTable TabelaPedido_Produtos;
     private javax.swing.JButton addMesa;
@@ -586,7 +619,6 @@ public class RestauranteView extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel labelPedido_MetodoPesquisa;
     private javax.swing.JLabel mensagem;
     private javax.swing.JComboBox metodoPesquisaPedido;

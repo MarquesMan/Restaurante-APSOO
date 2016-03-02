@@ -7,6 +7,12 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import model.Conexao;
 import view.RestauranteView;
 
 /**
@@ -16,6 +22,7 @@ import view.RestauranteView;
 public class GerenciarPedidos  implements ActionListener{
    
     protected RestauranteView view;
+    private final Conexao db;
     
     
     @Override
@@ -29,7 +36,11 @@ public class GerenciarPedidos  implements ActionListener{
                 System.out.println("Foi");
                 break;
             case "Pesquisar":
-                System.out.println("Foi");
+                int index_p = view.getMetodoPesquisaPedido().getSelectedIndex();
+                
+                if(0 == index_p)
+                    lista_clientes();
+                
                 break;
             case "Limpar":
                 view.getInputPedido_Cliente().setText("");
@@ -59,6 +70,32 @@ public class GerenciarPedidos  implements ActionListener{
 
     public GerenciarPedidos(RestauranteView view) {
         this.view = view;
+        this.db = new Conexao();
+    }
+    
+    public void lista_clientes(){
+
+        String where = "";
+        DefaultTableModel row = (DefaultTableModel) view.getTabelaPedido_Pesquisa().getModel();
+        int rowCount = row.getRowCount();
+
+        for (int i = rowCount - 1; i >= 0; i--) {
+            row.removeRow(i);
+        }
+        
+        String pesquisa = view.getInputPesquisa_Pedido().getText();
+        if(!"".equals(pesquisa)){
+            where = "WHERE nome like '%"+pesquisa+"%' or cpf LIKE '%"+pesquisa+"%'";
+        }
+        ResultSet query = db.query("SELECT * FROM cliente INNER JOIN pessoa ON  cliente.idpessoa = pessoa.idpessoa "+ where);
+        
+        try {
+            while(query.next()){
+                row.addRow(new Object[]{query.getInt("idcliente"), query.getString("nome"), query.getString("cpf")});
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GerenciarPedidos.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
     
     
