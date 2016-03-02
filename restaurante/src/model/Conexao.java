@@ -1,7 +1,9 @@
 package model;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -10,10 +12,9 @@ import java.util.logging.Logger;
  * @author pet
  */
 public class Conexao {
-    public Conexao () {    } //Possibilita instancias
-    public static Connection con = null;
- 
-    public static void Conectar() {
+    public Connection con = null;
+    
+    public Conexao () {
         System.out.println("Conectando ao banco...");
     
         try {
@@ -31,5 +32,71 @@ public class Conexao {
             System.out.println(e);
             throw new RuntimeException(e);
         }
+    }
+    
+    public boolean query_insert(String table, String fields, String values){
+        Statement stm;
+        
+        try {
+            stm = this.con.createStatement();
+            String sql;
+            sql = "INSERT INTO "+table+"("+fields+") VALUES ("+values+")";
+            int executeUpdate = stm.executeUpdate(sql);
+            return executeUpdate > 0;
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+        return false;        
+    }
+    
+    public boolean query_update(String table, String set){
+        return query_update(table,set,"1");
+    }
+    
+    public boolean query_update(String table, String set, String where){
+        Statement stm;
+        
+        try {
+            stm = this.con.createStatement();
+            String sql;
+            sql = "UPDATE "+table+" SET "+set+" WHERE "+where;
+            int executeUpdate = stm.executeUpdate(sql);
+            return executeUpdate > 0;
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+        return false;        
+    }
+    
+    public boolean query_delete(String table, String where){
+        Statement stm;
+        
+        try {
+            stm = this.con.createStatement();
+            String sql;
+            sql = "DELETE FROM "+table+" WHERE "+where;
+            int executeUpdate = stm.executeUpdate(sql);
+            return executeUpdate > 0;
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+        return false;        
+    }
+    
+    public ResultSet query(String sql){
+        ResultSet executeQuery = null;
+        Statement stm;
+        
+        try {
+            stm = this.con.createStatement();
+            executeQuery = stm.executeQuery(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+        return executeQuery;
     }
 }

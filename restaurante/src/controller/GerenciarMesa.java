@@ -7,10 +7,6 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.Conexao;
 import view.NovoPedido;
 
@@ -30,14 +26,13 @@ public class GerenciarMesa implements ActionListener{
         String status;
         status = view.getStatus_mesa().getText();
         Conexao inserir = new Conexao();
-        Conexao.Conectar();
-        try {
-            Statement stm = Conexao.con.createStatement();
-            stm.executeUpdate("INSERT INTO mesa(status) VALUES ('"+status+"')");
+        
+        if (inserir.query_update("mesa", "status", status)){
             view.getMensagem().setText("Mesa inserida com sucesso");
             view.getStatus_mesa().setText("");
-        } catch (SQLException ex) {
-            Logger.getLogger(GerenciarMesa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        else{
+            view.getMensagem().setText("Erro ao inserir a mesa. Por favor tente novamente");
         }
     }
     
