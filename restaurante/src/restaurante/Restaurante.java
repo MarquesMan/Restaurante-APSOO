@@ -4,9 +4,8 @@
  * and open the template in the editor.
  */
 package restaurante;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import view.NovoPedido;
 /**
  *
@@ -16,8 +15,29 @@ import view.NovoPedido;
 public class Restaurante{
     
         
-    public static void main(String[] args) {           
+    public static void main(String[] args) {
+        
+         try {
+            // Set cross-platform Java L&F (also called "Metal")
+        UIManager.setLookAndFeel(
+            UIManager.getCrossPlatformLookAndFeelClassName());
+        } 
+        catch (UnsupportedLookAndFeelException e) {
+           // handle exception
+        }
+        catch (ClassNotFoundException e) {
+           // handle exception
+        }
+        catch (InstantiationException e) {
+           // handle exception
+        }
+        catch (IllegalAccessException e) {
+           // handle exception
+        }
+    
         new NovoPedido();               
+        
+    
     }
     
 }

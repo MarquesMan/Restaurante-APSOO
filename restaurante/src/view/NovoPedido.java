@@ -7,6 +7,7 @@ package view;
 
 import controller.GerenciarMesa;
 import java.awt.event.ActionListener;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -22,12 +23,20 @@ public class NovoPedido extends javax.swing.JFrame {
      * Creates new form NovoPedido
      */
     public NovoPedido() {
+        
+
+        
         initComponents();
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // added
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH); // added
         this.setVisible(true);
-        this.setExtendedState(this.getExtendedState() | javax.swing.JFrame.MAXIMIZED_BOTH);
+        //this.setExtendedState(this.getExtendedState() | javax.swing.JFrame.MAXIMIZED_BOTH);
         
         ActionListener actionListener = new GerenciarMesa(this);
         addMesa.addActionListener(actionListener);
+        
+
+        
     }
 
     public JLabel getMensagem() {
@@ -56,14 +65,8 @@ public class NovoPedido extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         mensagem = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        Pedidos = new javax.swing.JMenu();
-        Cliente = new javax.swing.JMenu();
-        Reservas = new javax.swing.JMenu();
-        Administracao = new javax.swing.JMenu();
-        Funcionarios = new javax.swing.JMenuItem();
-        Estoque = new javax.swing.JMenuItem();
-        Cardapio = new javax.swing.JMenuItem();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,7 +78,7 @@ public class NovoPedido extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 399, Short.MAX_VALUE)
+            .addGap(0, 432, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Pedidos", jPanel2);
@@ -88,7 +91,7 @@ public class NovoPedido extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 399, Short.MAX_VALUE)
+            .addGap(0, 432, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Cliente", jPanel3);
@@ -104,18 +107,19 @@ public class NovoPedido extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(status_mesa, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(addMesa))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(96, 96, 96)
-                .addComponent(mensagem, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(96, 96, 96)
+                        .addComponent(mensagem, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(status_mesa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(252, 252, 252)))
+                        .addGap(88, 88, 88)
+                        .addComponent(addMesa)))
                 .addGap(0, 111, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -123,13 +127,13 @@ public class NovoPedido extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(mensagem)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 256, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addMesa)
-                    .addComponent(status_mesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(67, 67, 67))
+                    .addComponent(status_mesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addMesa))
+                .addContainerGap(338, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Reservas", jPanel4);
@@ -142,39 +146,36 @@ public class NovoPedido extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 399, Short.MAX_VALUE)
+            .addGap(0, 432, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Administração", jPanel1);
+        jTabbedPane1.addTab("Funcionários", jPanel1);
 
-        Pedidos.setText("Pedidos");
-        jMenuBar1.add(Pedidos);
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 681, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 432, Short.MAX_VALUE)
+        );
 
-        Cliente.setText("Cliente");
-        jMenuBar1.add(Cliente);
+        jTabbedPane1.addTab("Estoque", jPanel5);
 
-        Reservas.setText("Reservas");
-        jMenuBar1.add(Reservas);
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 681, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 432, Short.MAX_VALUE)
+        );
 
-        Administracao.setText("Administração");
-
-        Funcionarios.setText("Funcionários");
-        Administracao.add(Funcionarios);
-
-        Estoque.setText("Estoque");
-        Administracao.add(Estoque);
-
-        Cardapio.setText("Cardapio");
-        Cardapio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CardapioActionPerformed(evt);
-            }
-        });
-        Administracao.add(Cardapio);
-
-        jMenuBar1.add(Administracao);
-
-        setJMenuBar(jMenuBar1);
+        jTabbedPane1.addTab("Cardápio", jPanel6);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -184,34 +185,22 @@ public class NovoPedido extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CardapioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CardapioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CardapioActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu Administracao;
-    private javax.swing.JMenuItem Cardapio;
-    private javax.swing.JMenu Cliente;
-    private javax.swing.JMenuItem Estoque;
-    private javax.swing.JMenuItem Funcionarios;
-    private javax.swing.JMenu Pedidos;
-    private javax.swing.JMenu Reservas;
     private javax.swing.JButton addMesa;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel mensagem;
     private javax.swing.JTextField status_mesa;
