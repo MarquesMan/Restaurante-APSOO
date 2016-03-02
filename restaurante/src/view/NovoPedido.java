@@ -6,6 +6,8 @@
 package view;
 
 import controller.GerenciarMesa;
+import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -35,7 +37,19 @@ public class NovoPedido extends javax.swing.JFrame {
         ActionListener actionListener = new GerenciarMesa(this);
         addMesa.addActionListener(actionListener);
         
+        jTabbedPane1.setUI(new javax.swing.plaf.basic.BasicTabbedPaneUI() {
+            @Override protected int calculateTabHeight(
+                int tabPlacement, int tabIndex, int fontHeight) {
+                return 32;
+            }
 
+            @Override protected void paintTab(
+                Graphics g, int tabPlacement, Rectangle[] rects, int tabIndex,
+                Rectangle iconRect, Rectangle textRect) {
+     
+                super.paintTab(g, tabPlacement, rects, tabIndex, iconRect, textRect);
+            }
+        });
         
     }
 
@@ -185,7 +199,7 @@ public class NovoPedido extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
 
         pack();
