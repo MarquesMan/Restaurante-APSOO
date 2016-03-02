@@ -11,14 +11,14 @@ package model.entitys;
  */
 public class Itens_pedidos_finalizados {
     
-    private int iditens_pedido_finalizado;
-    private Pedidos_finalizados idpedido_finalizado;
-    private Itens_pedidos iditens_pedidos;
-    private String nome_produto;
-    private String ingredientes;
-    private String categoria;
-    private float preco;
-    private float preco_producao;
+    private final int iditens_pedido_finalizado;
+    private final Pedidos_finalizados idpedido_finalizado;
+    private final Itens_pedidos iditens_pedidos;
+    private final String nome_produto;
+    private final String ingredientes;
+    private final String categoria;
+    private final float preco;
+    private final float preco_producao;
 
     public Itens_pedidos_finalizados(int iditens_pedido_finalizado, Pedidos_finalizados idpedido_finalizado, Itens_pedidos iditens_pedidos, String nome_produto, String ingredientes, String categoria, float preco, float preco_producao) {
         this.iditens_pedido_finalizado = iditens_pedido_finalizado;

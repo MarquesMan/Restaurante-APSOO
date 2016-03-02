@@ -11,9 +11,9 @@ package model.entitys;
  */
 public class Itens_pedidos {
     
-    private int iditens_pedidos;
-    private Pedido idpedido;
-    private Menu iditem_menu;
+    private final int iditens_pedidos;
+    private final Pedido idpedido;
+    private final Menu iditem_menu;
 
     public Itens_pedidos(int iditens_pedidos, Pedido idpedido, Menu iditem_menu) {
         this.iditens_pedidos = iditens_pedidos;

@@ -11,14 +11,14 @@ package model.entitys;
  */
 public class Pedidos_finalizados {
     
-    private int idpedido_finalizado;
-    private Cliente idcliente;
-    private Funcionario idfuncionario;
-    private Mesa idmesa;
-    private String data;
-    private boolean pagamento;
-    private float troco;
-    private float total;
+    private final int idpedido_finalizado;
+    private final Cliente idcliente;
+    private final Funcionario idfuncionario;
+    private final Mesa idmesa;
+    private final String data;
+    private final boolean pagamento;
+    private final float troco;
+    private final float total;
 
     public Pedidos_finalizados(int idpedido_finalizado, Cliente idcliente, Funcionario idfuncionario, Mesa idmesa, String data, boolean pagamento, float troco, float total) {
         this.idpedido_finalizado = idpedido_finalizado;

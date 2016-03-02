@@ -9,12 +9,12 @@ package model.entitys;
  *
  * @author pet
  */
-public class Pessoa {
+public abstract class Pessoa {
     
-    private int idpessoa;
-    private String nome;
-    private String cpf;
-    private String telefone;
+    private final int idpessoa;
+    private final String nome;
+    private final String cpf;
+    private final String telefone;
 
     public Pessoa(int idpessoa, String nome, String cpf, String telefone) {
         this.idpessoa = idpessoa;
@@ -38,6 +38,4 @@ public class Pessoa {
     public String getTelefone() {
         return telefone;
     }
-    
-    
 }

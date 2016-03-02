@@ -11,8 +11,8 @@ package model.entitys;
  */
 public class Categoria {
     
-    private int idcategoria;
-    private String nome;
+    private final int idcategoria;
+    private final String nome;
 
     public int getIdcategoria() {
         return idcategoria;

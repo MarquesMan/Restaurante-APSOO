@@ -11,10 +11,10 @@ package model.entitys;
  */
 public class Produto {
     
-    private int idproduto;
-    private String nome;
-    private Categoria idcategoria;
-    private int quantidade_estoque;
+    private final int idproduto;
+    private final String nome;
+    private final Categoria idcategoria;
+    private final int quantidade_estoque;
 
     public Produto(int idproduto, String nome, Categoria idcategoria, int quantidade_estoque) {
         this.idproduto = idproduto;

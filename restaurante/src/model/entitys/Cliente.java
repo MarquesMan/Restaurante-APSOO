@@ -9,20 +9,15 @@ package model.entitys;
  *
  * @author pet
  */
-public class Cliente {
+public class Cliente extends Pessoa{
     
-    private Pessoa idpessoa;
-    private int idcliente;
-    private String data_cadastro;
+    private final int idcliente;
+    private final String data_cadastro;
 
-    public Cliente(Pessoa idpessoa, int idcliente, String data_cadastro) {
-        this.idpessoa = idpessoa;
+    public Cliente(int idcliente, String data_cadastro, int idpessoa, String nome, String cpf, String telefone) {
+        super(idpessoa, nome, cpf, telefone);
         this.idcliente = idcliente;
         this.data_cadastro = data_cadastro;
-    }
-
-    public Pessoa getIdpessoa() {
-        return idpessoa;
     }
 
     public int getIdcliente() {

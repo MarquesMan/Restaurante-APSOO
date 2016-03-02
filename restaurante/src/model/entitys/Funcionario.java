@@ -9,18 +9,17 @@ package model.entitys;
  *
  * @author pet
  */
-public class Funcionario {
+public class Funcionario extends Pessoa{
     
-    private Pessoa idpessoa;
-    private int idfuncionario;
-    private String data_admissao;
-    private String cargo;
-    private String usuario_sistema;
-    private String senha_sistema;
-    private boolean ativo; 
+    private final int idfuncionario;
+    private final String data_admissao;
+    private final String cargo;
+    private final String usuario_sistema;
+    private final String senha_sistema;
+    private final boolean ativo; 
 
-    public Funcionario(Pessoa idpessoa, int idfuncionario, String data_admissao, String cargo, String usuario_sistema, String senha_sistema, boolean ativo) {
-        this.idpessoa = idpessoa;
+    public Funcionario(int idfuncionario, String data_admissao, String cargo, String usuario_sistema, String senha_sistema, boolean ativo, int idpessoa, String nome, String cpf, String telefone) {
+        super(idpessoa, nome, cpf, telefone);
         this.idfuncionario = idfuncionario;
         this.data_admissao = data_admissao;
         this.cargo = cargo;
@@ -28,11 +27,7 @@ public class Funcionario {
         this.senha_sistema = senha_sistema;
         this.ativo = ativo;
     }
-
-    public Pessoa getIdpessoa() {
-        return idpessoa;
-    }
-
+    
     public int getIdfuncionario() {
         return idfuncionario;
     }

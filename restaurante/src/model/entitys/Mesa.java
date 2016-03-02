@@ -11,8 +11,8 @@ package model.entitys;
  */
 public class Mesa {
     
-    private int idmesa;
-    private String status;
+    private final int idmesa;
+    private final String status;
 
     public Mesa(int idmesa, String status) {
         this.idmesa = idmesa;

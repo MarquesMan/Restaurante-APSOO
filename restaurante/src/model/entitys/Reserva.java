@@ -11,12 +11,12 @@ package model.entitys;
  */
 public class Reserva {
     
-    private Cliente idcliente;
-    private Funcionario idfuncionario;
-    private Mesa idmesa;
-    private int idreserva;
-    private String horario;
-    private int quantidade_pessoas;
+    private final Cliente idcliente;
+    private final Funcionario idfuncionario;
+    private final Mesa idmesa;
+    private final int idreserva;
+    private final String horario;
+    private final int quantidade_pessoas;
 
     public Reserva(Cliente idcliente, Funcionario idfuncionario, Mesa idmesa, int idreserva, String horario, int quantidade_pessoas) {
         this.idcliente = idcliente;

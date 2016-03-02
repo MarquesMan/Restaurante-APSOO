@@ -11,13 +11,13 @@ package model.entitys;
  */
 public class Menu {
     
-    private int iditem_menu;
-    private String nome_produto;
-    private String ingredientes;
-    private Categoria idcategoria;
-    private float preco;
-    private float preco_producao;
-    private boolean disponibilidade;
+    private final int iditem_menu;
+    private final String nome_produto;
+    private final String ingredientes;
+    private final Categoria idcategoria;
+    private final float preco;
+    private final float preco_producao;
+    private final boolean disponibilidade;
 
     public Menu(int iditem_menu, String nome_produto, String ingredientes, Categoria idcategoria, float preco, float preco_producao, boolean disponibilidade) {
         this.iditem_menu = iditem_menu;
