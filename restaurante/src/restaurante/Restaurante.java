@@ -6,7 +6,7 @@
 package restaurante;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import view.NovoPedido;
+import view.RestauranteView;
 /**
  *
  * @author pet
@@ -35,7 +35,7 @@ public class Restaurante{
            // handle exception
         }
     
-        new NovoPedido();               
+        new RestauranteView();               
         
     
     }
