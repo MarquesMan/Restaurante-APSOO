@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -63,15 +64,19 @@ public class RestauranteView extends javax.swing.JFrame {
         TabelaPedido_Pesquisa.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent me) {
-            JTable table =(JTable) me.getSource();
-            Point p = me.getPoint();
-            int row = table.rowAtPoint(p);
-            if (me.getClickCount() == 2 && row!= -1) {
+                JTable table =(JTable) me.getSource();
+                Point p = me.getPoint();
+                int row = table.rowAtPoint(p);
+                if (me.getClickCount() == 2 && row!= -1) {
                  PedidosListener.setCliente_values(row);
+                }
             }
-    }
-});
+        });
         
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        TabelaPedido_Pesquisa.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
+        TabelaPedido_Produtos.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
         
     }
 
@@ -273,8 +278,10 @@ public class RestauranteView extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setText("Pesquisar por:");
 
+        metodoPesquisaPedido.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         metodoPesquisaPedido.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cliente", "Produtos", "Pedidos Pendentes" }));
 
         labelPedido_MetodoPesquisa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -287,6 +294,7 @@ public class RestauranteView extends javax.swing.JFrame {
             }
         });
 
+        TabelaPedido_Pesquisa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         TabelaPedido_Pesquisa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -310,7 +318,11 @@ public class RestauranteView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        TabelaPedido_Pesquisa.setRowHeight(30);
         jScrollPane2.setViewportView(TabelaPedido_Pesquisa);
+        if (TabelaPedido_Pesquisa.getColumnModel().getColumnCount() > 0) {
+            TabelaPedido_Pesquisa.getColumnModel().getColumn(0).setPreferredWidth(1);
+        }
 
         botaoPedido_Pesquisar.setText("Pesquisar");
 

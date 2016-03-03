@@ -40,6 +40,8 @@ public class GerenciarPedidos  implements ActionListener{
                 
                 if(0 == index_p)
                     lista_clientes();
+                else if(1 == index_p)
+                    lista_menu();
                 
                 break;
             case "Limpar":
@@ -98,12 +100,47 @@ public class GerenciarPedidos  implements ActionListener{
         } 
     }
     
+    public void lista_menu(){
+        String where = "";
+        DefaultTableModel row = (DefaultTableModel) view.getTabelaPedido_Pesquisa().getModel();
+        
+        clear_row(row);
+        row.setColumnCount(0);
+        
+        row.addColumn("Código");
+        row.addColumn("Nome");
+        row.addColumn("Preço");
+        row.addColumn("Disponivel");
+        
+        String pesquisa = view.getInputPesquisa_Pedido().getText();
+        if(!"".equals(pesquisa)){
+            where = "WHERE nome_produto like '%"+pesquisa+"%' or iditem_menu LIKE '%"+pesquisa+"%'";
+        }
+        ResultSet query = db.query("SELECT * FROM menu "+ where);
+        
+        try {
+            while(query.next()){
+                row.addRow(new Object[]{query.getInt("iditem_menu"), query.getString("nome_produto"), query.getString("preco"), query.getString("disponibilidade")});
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GerenciarPedidos.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }
+    
     public void setCliente_values(int index){
         DefaultTableModel row = (DefaultTableModel) view.getTabelaPedido_Pesquisa().getModel();
         view.getInputPedido_Cliente().setText(row.getValueAt(index, 0).toString());
     }
     
     
+    protected void clear_row(DefaultTableModel table){
+        int rowCount = table.getRowCount();
+
+        for (int i = rowCount - 1; i >= 0; i--) {
+            table.removeRow(i);
+        }
+    }
+     
     
     
 }
