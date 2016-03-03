@@ -9,6 +9,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -23,6 +27,7 @@ public class GerenciarPedidos  implements ActionListener{
    
     protected RestauranteView view;
     private final Conexao db;
+    private DecimalFormat floatFormat = new DecimalFormat("0.00");
     
     
     @Override
@@ -49,8 +54,12 @@ public class GerenciarPedidos  implements ActionListener{
                 view.getInputPedido_Data().setText("");
                 view.getInputPedido_Desconto().setText("");
                 view.getInputPedido_Mesa().setText("");
-                view.getInputPedido_Preço().setText("");
+                view.getInputPedido_Preço().setText("0.00");
                 view.getInputPedido_Troco().setText("");
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                Date date = new Date();
+                view.getInputPedido_Data().setText(dateFormat.format(date));
+                clear_row((DefaultTableModel) view.getTabelaPedido_Produtos().getModel());
                 break;
             case "comboBoxChanged":
                 int index = view.getMetodoPesquisaPedido().getSelectedIndex();
@@ -76,14 +85,14 @@ public class GerenciarPedidos  implements ActionListener{
     }
     
     public void lista_clientes(){
-
+        
+        view.getTabelaPedido_Pesquisa().setTabelaCliente(); 
+        
         String where = "";
         DefaultTableModel row = (DefaultTableModel) view.getTabelaPedido_Pesquisa().getModel();
         int rowCount = row.getRowCount();
 
-        for (int i = rowCount - 1; i >= 0; i--) {
-            row.removeRow(i);
-        }
+        clear_row(row);
         
         String pesquisa = view.getInputPesquisa_Pedido().getText();
         if(!"".equals(pesquisa)){
@@ -102,15 +111,13 @@ public class GerenciarPedidos  implements ActionListener{
     
     public void lista_menu(){
         String where = "";
+        view.getTabelaPedido_Pesquisa().setTabelaProduto(); 
         DefaultTableModel row = (DefaultTableModel) view.getTabelaPedido_Pesquisa().getModel();
         
-        clear_row(row);
-        row.setColumnCount(0);
+       
+       
         
-        row.addColumn("Código");
-        row.addColumn("Nome");
-        row.addColumn("Preço");
-        row.addColumn("Disponivel");
+        //view.getTabelaPedido_Pesquisa().repaint();
         
         String pesquisa = view.getInputPesquisa_Pedido().getText();
         if(!"".equals(pesquisa)){
@@ -119,8 +126,10 @@ public class GerenciarPedidos  implements ActionListener{
         ResultSet query = db.query("SELECT * FROM menu "+ where);
         
         try {
-            while(query.next()){
-                row.addRow(new Object[]{query.getInt("iditem_menu"), query.getString("nome_produto"), query.getString("preco"), query.getString("disponibilidade")});
+            while(query.next()){ 
+                String preco = floatFormat.format(query.getObject("preco"));// 0,00
+                
+                row.addRow(new Object[]{query.getInt("iditem_menu"), query.getString("nome_produto"),preco , query.getBoolean("disponibilidade")});
             }
         } catch (SQLException ex) {
             Logger.getLogger(GerenciarPedidos.class.getName()).log(Level.SEVERE, null, ex);
@@ -139,6 +148,35 @@ public class GerenciarPedidos  implements ActionListener{
         for (int i = rowCount - 1; i >= 0; i--) {
             table.removeRow(i);
         }
+    }
+
+    public void setProdutosOnTable(int index) {
+        
+        String nomeProduto,
+               precoProduto;
+        
+        Float precoProdutoFloat,
+              precoTotalFloat;
+        
+        DefaultTableModel tablePesquisa = (DefaultTableModel) view.getTabelaPedido_Pesquisa().getModel();
+        DefaultTableModel tableProduto = (DefaultTableModel) view.getTabelaPedido_Produtos().getModel();
+        
+        nomeProduto = tablePesquisa.getValueAt(index, 1).toString();    
+        
+        precoProduto =  tablePesquisa.getValueAt(index, 2).toString();//0,00
+        
+        precoProdutoFloat =  Float.parseFloat(tablePesquisa.getValueAt(index, 2).toString().replace(",", "."));
+        
+
+        
+        precoTotalFloat = Float.parseFloat(view.getInputPedido_Preço().getText().replace(",", ".")) + precoProdutoFloat;
+        
+      
+        view.getInputPedido_Preço().setText( floatFormat.format(precoTotalFloat));
+      
+        
+        tableProduto.addRow(new Object[]{nomeProduto,precoProduto,false});     
+        
     }
      
     
