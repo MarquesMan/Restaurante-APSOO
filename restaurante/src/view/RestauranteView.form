@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.8" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -18,19 +18,12 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,114,0,0,4,-70"/>
   </AuxValues>
 
-  <Layout>
-    <DimensionLayout dim="0">
-      <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jTabbedPane1" alignment="0" max="32767" attributes="0"/>
-      </Group>
-    </DimensionLayout>
-    <DimensionLayout dim="1">
-      <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jTabbedPane1" alignment="0" max="32767" attributes="0"/>
-      </Group>
-    </DimensionLayout>
+  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+    <Property name="columns" type="int" value="0"/>
+    <Property name="rows" type="int" value="1"/>
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
@@ -49,485 +42,490 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jSeparator5" max="32767" attributes="0"/>
-                          <Component id="jSeparator4" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jPanel1" max="32767" attributes="0"/>
+                          <Component id="jPanel3" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="jPanel1" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jPanel2" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="jPanel1">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="Informa&#xe7;&#xf5;es do Pedido">
+                      <Font PropertyName="font" name="Tahoma" size="14" style="0"/>
+                    </TitledBorder>
+                  </Border>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="InputPedido_Cliente" alignment="0" min="-2" pref="328" max="-2" attributes="0"/>
+                                      <Component id="InputPedido_Data" min="-2" pref="328" max="-2" attributes="0"/>
+                                      <Component id="InputPedido_Mesa" min="-2" pref="328" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="InputPedido_Cliente" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="InputPedido_Data" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="InputPedido_Mesa" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="115" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="jLabel2">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="14" style="1"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Cliente:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="InputPedido_Cliente">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel3">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="14" style="1"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Data:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="InputPedido_Data">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel5">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="14" style="1"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Mesa:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="InputPedido_Mesa">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InputPedido_MesaActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel4">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="14" style="1"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Produtos:"/>
+                  </Properties>
+                </Component>
+                <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+                  <AuxValues>
+                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                  </AuxValues>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JTable" name="TabelaPedido_Produtos">
+                      <Properties>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                          <Table columnCount="3" rowCount="4">
+                            <Column editable="true" title="Produto" type="java.lang.Object"/>
+                            <Column editable="true" title="Pre&#xe7;o" type="java.lang.Object"/>
+                            <Column editable="true" title="Remover" type="java.lang.Boolean"/>
+                          </Table>
+                        </Property>
+                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                          <TableColumnModel selectionModel="0">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                          </TableColumnModel>
+                        </Property>
+                        <Property name="rowHeight" type="int" value="30"/>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                        </Property>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel2">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="Pesquisa">
+                      <Font PropertyName="font" name="Tahoma" size="14" style="0"/>
+                    </TitledBorder>
+                  </Border>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane2" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="metodoPesquisaPedido" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                      <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="labelPedido_MetodoPesquisa" min="-2" pref="80" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="InputPesquisa_Pedido" min="-2" pref="328" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="botaoPedido_Pesquisar" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="0" pref="154" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                          <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="metodoPesquisaPedido" min="-2" pref="32" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="labelPedido_MetodoPesquisa" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="InputPesquisa_Pedido" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="botaoPedido_Pesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="jScrollPane2" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="jLabel13">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Pesquisar por:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="metodoPesquisaPedido">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="3">
+                        <StringItem index="0" value="Cliente"/>
+                        <StringItem index="1" value="Produtos"/>
+                        <StringItem index="2" value="Pedidos Pendentes"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="labelPedido_MetodoPesquisa">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="14" style="1"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Cliente:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="InputPesquisa_Pedido">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value=""/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="InputPesquisa_PedidoKeyReleased"/>
+                  </Events>
+                </Component>
+                <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+                  <AuxValues>
+                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                  </AuxValues>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JTable" name="TabelaPedido_Pesquisa">
+                      <Properties>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                          <Table columnCount="3" rowCount="0">
+                            <Column editable="false" title="C&#xf3;digo" type="java.lang.Integer"/>
+                            <Column editable="false" title="Nome" type="java.lang.String"/>
+                            <Column editable="false" title="CPF" type="java.lang.String"/>
+                          </Table>
+                        </Property>
+                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                          <TableColumnModel selectionModel="0">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                          </TableColumnModel>
+                        </Property>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                        </Property>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Component class="javax.swing.JButton" name="botaoPedido_Pesquisar">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Pesquisar"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel3">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="Pagamento">
+                      <Font PropertyName="font" name="Tahoma" size="14" style="0"/>
+                    </TitledBorder>
+                  </Border>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="botaoPedido_Limpar" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="InputPedido_Desconto" alignment="0" pref="168" max="32767" attributes="0"/>
-                                              <Component id="InputPedido_Preço" alignment="0" max="32767" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="InputPedido_Troco" min="-2" pref="168" max="-2" attributes="0"/>
-                                                  <Group type="102" attributes="0">
-                                                      <Component id="radioPedido_PagamentoCartao" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                      <Component id="radioPedido_PagamentoDinheiro" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                          </Group>
-                                      </Group>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                      <Component id="botaoPedido_Salvar" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="botaoPedido_Finalizar" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="InputPedido_Mesa" min="-2" pref="168" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane1" min="-2" pref="343" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="InputPedido_Cliente" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="InputPedido_Data" alignment="0" pref="168" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jSeparator6" max="32767" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jSeparator2" min="-2" pref="11" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace type="unrelated" max="32767" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="botaoPedido_Pesquisar" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="InputPedido_Preço" alignment="0" min="-2" pref="328" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="metodoPesquisaPedido" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="InputPedido_Troco" min="-2" pref="328" max="-2" attributes="0"/>
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="labelPedido_MetodoPesquisa" min="-2" pref="80" max="-2" attributes="0"/>
+                                                  <Component id="radioPedido_PagamentoCartao" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="InputPesquisa_Pedido" min="-2" pref="145" max="-2" attributes="0"/>
+                                                  <Component id="radioPedido_PagamentoDinheiro" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
-                                          <Component id="jScrollPane2" alignment="1" min="-2" pref="247" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="25" max="32767" attributes="0"/>
+                                      <Component id="InputPedido_Desconto" alignment="0" min="-2" pref="328" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="botaoPedido_Limpar" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+                                  <Component id="botaoPedido_Salvar" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="botaoPedido_Finalizar" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
+                          <EmptySpace pref="24" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jSeparator2" alignment="0" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="InputPedido_Cliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="InputPedido_Data" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="InputPedido_Mesa" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace pref="24" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane1" min="-2" pref="92" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" pref="42" max="32767" attributes="0"/>
-                              <Component id="jSeparator5" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jSeparator4" min="-2" pref="9" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" pref="16" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="InputPedido_Desconto" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="InputPedido_Preço" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="radioPedido_PagamentoCartao" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="radioPedido_PagamentoDinheiro" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="InputPedido_Troco" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace pref="33" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="botaoPedido_Finalizar" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="botaoPedido_Salvar" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="botaoPedido_Limpar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="InputPedido_Desconto" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jSeparator6" min="-2" pref="13" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="metodoPesquisaPedido" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="labelPedido_MetodoPesquisa" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="InputPesquisa_Pedido" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="botaoPedido_Pesquisar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                              <Component id="jScrollPane2" min="-2" pref="92" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="InputPedido_Preço" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="radioPedido_PagamentoCartao" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="radioPedido_PagamentoDinheiro" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="InputPedido_Troco" alignment="0" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="botaoPedido_Limpar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botaoPedido_Finalizar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botaoPedido_Salvar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="20" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="21" max="32767" attributes="0"/>
                   </Group>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-          <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel2">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Cliente:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel3">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Data:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel4">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Produtos:"/>
-              </Properties>
-            </Component>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-              <AuxValues>
-                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-              </AuxValues>
-
-              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                </DimensionLayout>
+              </Layout>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="TabelaPedido_Produtos">
+                <Component class="javax.swing.JLabel" name="jLabel8">
                   <Properties>
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="3" rowCount="4">
-                        <Column editable="true" title="Produto" type="java.lang.Object"/>
-                        <Column editable="true" title="Pre&#xe7;o" type="java.lang.Object"/>
-                        <Column editable="true" title="Remover" type="java.lang.Boolean"/>
-                      </Table>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="14" style="1"/>
                     </Property>
-                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                      <TableColumnModel selectionModel="0">
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                      </TableColumnModel>
+                    <Property name="text" type="java.lang.String" value="Desconto:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="InputPedido_Desconto">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel7">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="14" style="1"/>
                     </Property>
-                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                    <Property name="text" type="java.lang.String" value="Pre&#xe7;o Total:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="InputPedido_Pre&#xe7;o">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel9">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="14" style="1"/>
                     </Property>
+                    <Property name="text" type="java.lang.String" value="Pagamento:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="radioPedido_PagamentoCartao">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Cart&#xe3;o"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioPedido_PagamentoCartaoActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="radioPedido_PagamentoDinheiro">
+                  <Properties>
+                    <Property name="selected" type="boolean" value="true"/>
+                    <Property name="text" type="java.lang.String" value="Dinheiro"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioPedido_PagamentoDinheiroActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel10">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="14" style="1"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Troco:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="InputPedido_Troco">
+                </Component>
+                <Component class="javax.swing.JButton" name="botaoPedido_Limpar">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Limpar"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="botaoPedido_Salvar">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Salvar"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="botaoPedido_Finalizar">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Finalizar"/>
                   </Properties>
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="jLabel6">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Pagamento"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSeparator" name="jSeparator2">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="99" id="TabRenderer.selectedActivatedBackground" palette="3" red="33" type="palette"/>
-                </Property>
-                <Property name="orientation" type="int" value="1"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel5">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Mesa:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="InputPedido_Data">
-            </Component>
-            <Component class="javax.swing.JTextField" name="InputPedido_Cliente">
-            </Component>
-            <Component class="javax.swing.JTextField" name="InputPedido_Mesa">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InputPedido_MesaActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JSeparator" name="jSeparator4">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="99" id="TabRenderer.selectedActivatedBackground" palette="3" red="33" type="palette"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSeparator" name="jSeparator5">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="99" id="TabRenderer.selectedActivatedBackground" palette="3" red="33" type="palette"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel7">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Pre&#xe7;o Total:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel8">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Desconto:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="InputPedido_Desconto">
-            </Component>
-            <Component class="javax.swing.JTextField" name="InputPedido_Pre&#xe7;o">
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel9">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Pagamento:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel10">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Troco:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JRadioButton" name="radioPedido_PagamentoCartao">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Cart&#xe3;o"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioPedido_PagamentoCartaoActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JRadioButton" name="radioPedido_PagamentoDinheiro">
-              <Properties>
-                <Property name="selected" type="boolean" value="true"/>
-                <Property name="text" type="java.lang.String" value="Dinheiro"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioPedido_PagamentoDinheiroActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JTextField" name="InputPedido_Troco">
-            </Component>
-            <Component class="javax.swing.JButton" name="botaoPedido_Limpar">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Limpar"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="botaoPedido_Salvar">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Salvar"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="botaoPedido_Finalizar">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Finalizar"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel11">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Pesquisa"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSeparator" name="jSeparator6">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="99" id="TabRenderer.selectedActivatedBackground" palette="3" red="33" type="palette"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="metodoPesquisaPedido">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="3">
-                    <StringItem index="0" value="Cliente"/>
-                    <StringItem index="1" value="Produtos"/>
-                    <StringItem index="2" value="Pedidos Pendentes"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-            </Component>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane2">
-              <AuxValues>
-                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-              </AuxValues>
-
-              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-              <SubComponents>
-                <Component class="javax.swing.JTable" name="TabelaPedido_Pesquisa">
-                  <Properties>
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="3" rowCount="0">
-                        <Column editable="false" title="C&#xf3;digo" type="java.lang.Integer"/>
-                        <Column editable="false" title="Nome" type="java.lang.String"/>
-                        <Column editable="false" title="CPF" type="java.lang.String"/>
-                      </Table>
-                    </Property>
-                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                      <TableColumnModel selectionModel="0">
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                      </TableColumnModel>
-                    </Property>
-                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
-                    </Property>
-                  </Properties>
-                </Component>
-              </SubComponents>
-            </Container>
-            <Component class="javax.swing.JButton" name="botaoPedido_Pesquisar">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Pesquisar"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="labelPedido_MetodoPesquisa">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Cliente:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="InputPesquisa_Pedido">
-              <Properties>
-                <Property name="toolTipText" type="java.lang.String" value=""/>
-              </Properties>
-              <Events>
-                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="InputPesquisa_PedidoKeyReleased"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel13">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Pesquisar por:"/>
-              </Properties>
-            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanelCliente">
@@ -542,12 +540,12 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="739" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="1205" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="559" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="598" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -583,7 +581,7 @@
                               <Component id="addMesa" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="169" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="635" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -599,7 +597,7 @@
                           <Component id="status_mesa" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="addMesa" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="465" max="32767" attributes="0"/>
+                      <EmptySpace pref="504" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -639,12 +637,12 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="739" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="1205" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="559" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="598" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -661,12 +659,12 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="739" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="1205" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="559" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="598" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -683,12 +681,12 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="739" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="1205" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="559" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="598" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>

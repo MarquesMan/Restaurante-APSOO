@@ -98,6 +98,11 @@ public class GerenciarPedidos  implements ActionListener{
         } 
     }
     
+    public void setCliente_values(int index){
+        DefaultTableModel row = (DefaultTableModel) view.getTabelaPedido_Pesquisa().getModel();
+        view.getInputPedido_Cliente().setText(row.getValueAt(index, 0).toString());
+    }
+    
     
     
     
