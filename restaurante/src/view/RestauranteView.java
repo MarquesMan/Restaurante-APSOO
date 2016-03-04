@@ -12,11 +12,8 @@ import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
@@ -24,7 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.text.MaskFormatter;
+import javax.swing.table.TableColumn;
 
 
 
@@ -53,8 +50,11 @@ public class RestauranteView extends javax.swing.JFrame {
         botaoPedido_Limpar.addActionListener(PedidosListener);
         botaoPedido_Salvar.addActionListener(PedidosListener);
         botaoPedido_Pesquisar.addActionListener(PedidosListener);
+        botaoProduto_Remover.addActionListener(PedidosListener);
         metodoPesquisaPedido.addActionListener(PedidosListener);
         InputPesquisa_Pedido.addActionListener(PedidosListener);
+
+        
 
         jTabbedPane1.setUI(new javax.swing.plaf.basic.BasicTabbedPaneUI() {
             @Override protected int calculateTabHeight(
@@ -95,7 +95,8 @@ public class RestauranteView extends javax.swing.JFrame {
 
         TabelaPedido_Produtos.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
 
-        
+        TableColumn tc = TabelaPedido_Produtos.getColumnModel().getColumn(2);
+        tc.setHeaderRenderer(new SelectAllHeader(TabelaPedido_Produtos, 2));
         
        
         
@@ -172,6 +173,7 @@ public class RestauranteView extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelaPedido_Produtos = new javax.swing.JTable();
         InputPedido_Data = new javax.swing.JFormattedTextField();
+        botaoProduto_Remover = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         metodoPesquisaPedido = new javax.swing.JComboBox();
@@ -247,6 +249,9 @@ public class RestauranteView extends javax.swing.JFrame {
         });
         TabelaPedido_Produtos.setRowHeight(30);
         jScrollPane1.setViewportView(TabelaPedido_Produtos);
+        if (TabelaPedido_Produtos.getColumnModel().getColumnCount() > 0) {
+            TabelaPedido_Produtos.getColumnModel().getColumn(2).setCellRenderer(null);
+        }
 
         InputPedido_Data.setEditable(false);
         try {
@@ -266,6 +271,8 @@ public class RestauranteView extends javax.swing.JFrame {
             }
         });
 
+        botaoProduto_Remover.setText("Remover");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -275,21 +282,26 @@ public class RestauranteView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel5))
-                        .addGap(21, 21, 21))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel5))
+                                .addGap(21, 21, 21))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(InputPedido_Cliente)
+                                    .addComponent(InputPedido_Mesa)
+                                    .addComponent(InputPedido_Data, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 38, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(InputPedido_Cliente)
-                            .addComponent(InputPedido_Mesa)
-                            .addComponent(InputPedido_Data, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 38, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(botaoProduto_Remover)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -309,11 +321,12 @@ public class RestauranteView extends javax.swing.JFrame {
                     .addComponent(InputPedido_Mesa, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botaoProduto_Remover))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
@@ -688,6 +701,7 @@ public class RestauranteView extends javax.swing.JFrame {
     private javax.swing.JButton botaoPedido_Limpar;
     private javax.swing.JButton botaoPedido_Pesquisar;
     private javax.swing.JButton botaoPedido_Salvar;
+    private javax.swing.JButton botaoProduto_Remover;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
