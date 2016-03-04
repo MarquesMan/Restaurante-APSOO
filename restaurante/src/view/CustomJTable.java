@@ -5,14 +5,17 @@
  */
 package view;
 
+import javax.swing.JLabel;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
  * @author pet
  */
 public class CustomJTable extends JTable {
+    DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+    
     
     public void setTabelaCliente(){
         this.setModel(new javax.swing.table.DefaultTableModel(
@@ -38,10 +41,17 @@ public class CustomJTable extends JTable {
                 return canEdit [columnIndex];
             }
         });
+        
+        this.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
+        
     }   
 
     public CustomJTable() {
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
         setTabelaCliente();
+        this.getTableHeader().setReorderingAllowed(false);
+        this.setRowHeight(30);
+        this.setFont(new java.awt.Font("Tahoma", 0, 14));
     }
     
     public void setTabelaProduto(){
@@ -67,8 +77,10 @@ public class CustomJTable extends JTable {
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
-        });        
+        });
         
+        this.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
+        this.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
     }
    
     

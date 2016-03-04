@@ -158,8 +158,15 @@ public class GerenciarPedidos  implements ActionListener{
         Float precoProdutoFloat,
               precoTotalFloat;
         
+        Boolean disponivel;
+        
         DefaultTableModel tablePesquisa = (DefaultTableModel) view.getTabelaPedido_Pesquisa().getModel();
         DefaultTableModel tableProduto = (DefaultTableModel) view.getTabelaPedido_Produtos().getModel();
+        
+        disponivel = Boolean.valueOf(tablePesquisa.getValueAt(index, 3).toString());
+
+        if(!disponivel)
+            return;
         
         nomeProduto = tablePesquisa.getValueAt(index, 1).toString();    
         

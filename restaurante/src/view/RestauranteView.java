@@ -12,8 +12,11 @@ import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
@@ -21,6 +24,7 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.text.MaskFormatter;
 
 
 
@@ -31,7 +35,7 @@ import javax.swing.table.DefaultTableCellRenderer;
  */
 public class RestauranteView extends javax.swing.JFrame {
     GerenciarPedidos PedidosListener;
-
+    private static final DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
     /**
      * Creates new form NovoPedido
      */
@@ -73,7 +77,7 @@ public class RestauranteView extends javax.swing.JFrame {
                 Point p = me.getPoint();
                 int row = table.rowAtPoint(p);
                 
-                if (me.getClickCount() == 2 && row!= -1) {
+                if (me.getClickCount() >= 2 && row!= -1) {
                     String nome = TabelaPedido_Pesquisa.getColumnName(2);
                     if( "CPF".equals(nome)){
                        PedidosListener.setCliente_values(row);
@@ -88,10 +92,9 @@ public class RestauranteView extends javax.swing.JFrame {
         
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-        TabelaPedido_Pesquisa.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
-        TabelaPedido_Produtos.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
-        
-        TabelaPedido_Pesquisa.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
+
+        TabelaPedido_Produtos.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
+
         
         
        
@@ -190,8 +193,8 @@ public class RestauranteView extends javax.swing.JFrame {
         botaoPedido_Finalizar = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         InputPedido_Desconto = new javax.swing.JFormattedTextField();
-        InputPedido_Pago = new javax.swing.JFormattedTextField();
         InputPedido_Troco = new javax.swing.JFormattedTextField();
+        InputPedido_Pago = new javax.swing.JFormattedTextField();
         jPanelCliente = new javax.swing.JPanel();
         jPanelReservas = new javax.swing.JPanel();
         addMesa = new javax.swing.JButton();
@@ -225,6 +228,7 @@ public class RestauranteView extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Produtos:");
 
+        TabelaPedido_Produtos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         TabelaPedido_Produtos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -243,11 +247,6 @@ public class RestauranteView extends javax.swing.JFrame {
         });
         TabelaPedido_Produtos.setRowHeight(30);
         jScrollPane1.setViewportView(TabelaPedido_Produtos);
-        if (TabelaPedido_Produtos.getColumnModel().getColumnCount() > 0) {
-            TabelaPedido_Produtos.getColumnModel().getColumn(0).setHeaderValue("Produto");
-            TabelaPedido_Produtos.getColumnModel().getColumn(1).setHeaderValue("Preço");
-            TabelaPedido_Produtos.getColumnModel().getColumn(2).setHeaderValue("Remover");
-        }
 
         InputPedido_Data.setEditable(false);
         try {
@@ -290,7 +289,7 @@ public class RestauranteView extends javax.swing.JFrame {
                             .addComponent(InputPedido_Cliente)
                             .addComponent(InputPedido_Mesa)
                             .addComponent(InputPedido_Data, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 38, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -310,10 +309,10 @@ public class RestauranteView extends javax.swing.JFrame {
                     .addComponent(InputPedido_Mesa, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addGap(0, 190, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -357,7 +356,7 @@ public class RestauranteView extends javax.swing.JFrame {
                                 .addComponent(InputPesquisa_Pedido, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
                                 .addComponent(botaoPedido_Pesquisar)))
-                        .addGap(0, 154, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -373,7 +372,7 @@ public class RestauranteView extends javax.swing.JFrame {
                     .addComponent(InputPesquisa_Pedido, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoPedido_Pesquisar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(JScrollPane3)
+                .addComponent(JScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -431,14 +430,6 @@ public class RestauranteView extends javax.swing.JFrame {
             }
         });
 
-        InputPedido_Pago.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        InputPedido_Pago.setText("0.00");
-        InputPedido_Pago.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InputPedido_PagoActionPerformed(evt);
-            }
-        });
-
         InputPedido_Troco.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         InputPedido_Troco.setText("0.00");
         InputPedido_Troco.addActionListener(new java.awt.event.ActionListener() {
@@ -447,12 +438,14 @@ public class RestauranteView extends javax.swing.JFrame {
             }
         });
 
+        InputPedido_Pago.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(40, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -484,7 +477,7 @@ public class RestauranteView extends javax.swing.JFrame {
                         .addComponent(botaoPedido_Salvar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(botaoPedido_Finalizar)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(246, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -505,7 +498,7 @@ public class RestauranteView extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(InputPedido_Pago, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(InputPedido_Troco, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -520,20 +513,20 @@ public class RestauranteView extends javax.swing.JFrame {
         jPanelPedido.setLayout(jPanelPedidoLayout);
         jPanelPedidoLayout.setHorizontalGroup(
             jPanelPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelPedidoLayout.createSequentialGroup()
-                .addGroup(jPanelPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPedidoLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanelPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanelPedidoLayout.setVerticalGroup(
             jPanelPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPedidoLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Pedidos", jPanelPedido);
@@ -672,10 +665,6 @@ public class RestauranteView extends javax.swing.JFrame {
     private void InputPedido_DescontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputPedido_DescontoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_InputPedido_DescontoActionPerformed
-
-    private void InputPedido_PagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputPedido_PagoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_InputPedido_PagoActionPerformed
 
     private void InputPedido_TrocoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputPedido_TrocoActionPerformed
         // TODO add your handling code here:
