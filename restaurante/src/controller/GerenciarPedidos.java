@@ -7,17 +7,20 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import model.Conexao;
-import view.RestauranteView;
+import view.PedidoView;
+
 
 /**
  *
@@ -25,12 +28,12 @@ import view.RestauranteView;
  */
 public class GerenciarPedidos  implements ActionListener{
    
-    protected RestauranteView view;
+    protected PedidoView view;
     private final Conexao db;
     private final DecimalFormat floatFormat = new DecimalFormat("0.00");
     private final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     
-    public GerenciarPedidos(RestauranteView view) {
+    public GerenciarPedidos(PedidoView view) {
         this.view = view;
         this.db = new Conexao();
     }
@@ -44,7 +47,7 @@ public class GerenciarPedidos  implements ActionListener{
                 System.out.println("Foi");
                 break;
             case "Salvar":
-                System.out.println("Foi");
+                salva_pedido();
                 break;
             case "Pesquisar":
                 int index_p = view.getMetodoPesquisaPedido().getSelectedIndex();
@@ -87,10 +90,11 @@ public class GerenciarPedidos  implements ActionListener{
     public void limparCamposPedido(){
         view.getInputPedido_Cliente().setText("");
         view.getInputPedido_Data().setText("");
-        view.getInputPedido_Desconto().setText("");
+        view.getInputPedido_Desconto().setValue(new BigDecimal("0.00"));
         view.getInputPedido_Mesa().setText("");
-        view.getInputPedido_Preço().setText("0.00");
-        view.getInputPedido_Troco().setText("");
+        view.getInputPedido_Preco().setValue(new BigDecimal("0.00"));
+        view.getInputPedido_Pago().setValue(new BigDecimal("0.00"));
+        view.getInputPedido_Troco().setValue(new BigDecimal("0.00"));
         Date date = new Date();
         view.getInputPedido_Data().setText(dateFormat.format(date));
         clear_row((DefaultTableModel) view.getTabelaPedido_Produtos().getModel());
@@ -164,7 +168,8 @@ public class GerenciarPedidos  implements ActionListener{
     public void setProdutosOnTable(int index) {
         
         String nomeProduto,
-               precoProduto;
+               precoProduto,
+               codigoProduto;
         
         Float precoProdutoFloat,
               precoTotalFloat;
@@ -181,15 +186,16 @@ public class GerenciarPedidos  implements ActionListener{
         if(!disponivel)
             return;
         
+        codigoProduto = tablePesquisa.getValueAt(index, 0).toString();
         nomeProduto = tablePesquisa.getValueAt(index, 1).toString();    
         precoProduto =  tablePesquisa.getValueAt(index, 2).toString();//0,00
         precoProdutoFloat =  Float.parseFloat(tablePesquisa.getValueAt(index, 2).toString().replace(",", "."));       
 
         
-        precoTotalFloat = Float.parseFloat(view.getInputPedido_Preço().getText().replace(",", ".")) + precoProdutoFloat;
-        view.getInputPedido_Preço().setText( floatFormat.format(precoTotalFloat));
+        precoTotalFloat = view.getInputPedido_Preco().getValue().floatValue() + precoProdutoFloat;
+        view.getInputPedido_Preco().setValue(new BigDecimal(Float.toString(precoTotalFloat)));
         
-        tableProduto.addRow(new Object[]{nomeProduto,precoProduto,false});     
+        tableProduto.addRow(new Object[]{codigoProduto,nomeProduto,precoProduto,false});  
         
     }
     
@@ -200,12 +206,14 @@ public class GerenciarPedidos  implements ActionListener{
         Float precoProdutoFloat,
               precoTotalFloat;  
 
+        
         for (int i = rowCount - 1; i >= 0; i--) {
             
-            if(Boolean.valueOf(table.getValueAt(i, 2).toString())){
-                precoProdutoFloat =  Float.parseFloat(table.getValueAt(i, 1).toString().replace(",", "."));
-                precoTotalFloat = Float.parseFloat(view.getInputPedido_Preço().getText().replace(",", ".")) - precoProdutoFloat;
-                view.getInputPedido_Preço().setText( floatFormat.format(precoTotalFloat));
+            if(Boolean.valueOf(table.getValueAt(i, 3).toString())){
+                precoProdutoFloat =  Float.parseFloat(table.getValueAt(i, 2).toString().replace(",", "."));
+                precoTotalFloat = view.getInputPedido_Preco().getValue().floatValue() - precoProdutoFloat;
+                view.getInputPedido_Preco().setValue(new BigDecimal(Float.toString(precoTotalFloat)));
+                calcula_troco();
                 table.removeRow(i);
             }            
         }
@@ -217,35 +225,66 @@ public class GerenciarPedidos  implements ActionListener{
         float pagamento, troco;
         String data;
         
+        if(   "".equals(view.getInputPedido_Cliente().getText())
+           || "".equals(view.getInputPedido_Mesa().getText())){
+            return;
+        }
+
         cliente = Integer.parseInt(view.getInputPedido_Cliente().getText());
         funcionario = 1;
         mesa = Integer.parseInt(view.getInputPedido_Mesa().getText());
         data = view.getInputPedido_Data().getText();
-        pagamento = Float.parseFloat(view.getInputPedido_Cliente().getText().replace(",", "."));
-        troco = Float.parseFloat(view.getInputPedido_Cliente().getText().replace(",", "."));
+        pagamento = view.getInputPedido_Pago().getValue().floatValue();
+        troco = view.getInputPedido_Troco().getValue().floatValue();
         
-        view.getTabelaPedido_Pesquisa().setTabelaCliente(); 
-        
-        String where = "";
-        DefaultTableModel row = (DefaultTableModel) view.getTabelaPedido_Pesquisa().getModel();
-        int rowCount = row.getRowCount();
-
-        clear_row(row);
-        
-        String pesquisa = view.getInputPesquisa_Pedido().getText();
-        if(!"".equals(pesquisa)){
-            where = "WHERE nome like '%"+pesquisa+"%' or cpf LIKE '%"+pesquisa+"%'";
-        }
-        ResultSet query = db.query("SELECT * FROM cliente INNER JOIN pessoa ON  cliente.idpessoa = pessoa.idpessoa "+ where);
-        
+        SimpleDateFormat from = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat to = new SimpleDateFormat("yyyy-MM-dd");
+        Date date;
         try {
-            while(query.next()){
-                row.addRow(new Object[]{query.getInt("idcliente"), query.getString("nome"), query.getString("cpf")});
+            
+            date = from.parse(data); // 01/02/2014
+            String mysqlString = to.format(date);     // 2014-02-01
+      
+            int id_pedido = db.query_insert("pedido", "idcliente, idfuncionario, idmesa, data, pagamento, troco",
+                            cliente+", "+funcionario+", "+mesa+", '"+mysqlString+"', "+pagamento+", "+troco);
+        
+            //Erro na inserção
+            if(id_pedido == 0){
+                return;
             }
-        } catch (SQLException ex) {
+        
+            DefaultTableModel tabela_produtos = (DefaultTableModel) view.getTabelaPedido_Produtos().getModel();
+            int rowCount = tabela_produtos.getRowCount();
+     
+            for(int i = 0; i < rowCount; i++){
+                int iditem_menu = Integer.parseInt(tabela_produtos.getValueAt(i, 0).toString());
+            
+                db.query_insert("itens_pedidos", "idpedido, iditem_menu", id_pedido+", "+iditem_menu);
+            }
+            
+            limparCamposPedido();
+            
+        } catch (ParseException ex) {
             Logger.getLogger(GerenciarPedidos.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
+        
+      
     }
     
+    public void calcula_troco(){
+        float troco, pago, total, desconto;
+        
+        desconto = view.getInputPedido_Desconto().getValue().floatValue();
+        pago = view.getInputPedido_Pago().getValue().floatValue();
+        total = view.getInputPedido_Preco().getValue().floatValue();
+        
+        if(pago > (total-desconto)){
+            troco =  pago - (total - desconto);
+            view.getInputPedido_Troco().setValue(new BigDecimal(troco));
+        }
+        else{
+            view.getInputPedido_Troco().setValue(new BigDecimal("0.00"));
+        }
+    }
     
 }

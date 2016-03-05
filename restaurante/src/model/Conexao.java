@@ -1,11 +1,13 @@
 package model;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.management.Query;
 
 /**
  *
@@ -34,20 +36,27 @@ public class Conexao {
         }
     }
     
-    public boolean query_insert(String table, String fields, String values){
-        Statement stm;
-        
+    public int query_insert(String table, String fields, String values){
+        PreparedStatement stm;
+
         try {
-            stm = this.con.createStatement();
-            String sql;
-            sql = "INSERT INTO "+table+"("+fields+") VALUES ("+values+")";
-            int executeUpdate = stm.executeUpdate(sql);
-            return executeUpdate > 0;
+            String sql = "INSERT INTO "+table+"("+fields+") VALUES ("+values+")";
+            stm = this.con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);            
+            int executeUpdate = stm.executeUpdate();
+            
+            if( executeUpdate > 0){
+                ResultSet keys = stm .getGeneratedKeys();    
+                keys.next();  
+                return keys.getInt(1);
+            }
+                
+            return 0;
+            
         } catch (SQLException ex) {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
         }
             
-        return false;        
+        return 0;        
     }
     
     public boolean query_update(String table, String set){
