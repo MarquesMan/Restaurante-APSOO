@@ -60,12 +60,16 @@ public class RestauranteView extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         pedidoView = new view.PedidoView();
         clienteView = new view.ClienteView();
+        funcionarioView1 = new view.FuncionarioView();
+        estoqueView1 = new view.EstoqueView();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jTabbedPane1.addTab("Pedidos", pedidoView);
-        jTabbedPane1.addTab("Cliente", clienteView);
+        jTabbedPane1.addTab("Clientes", clienteView);
+        jTabbedPane1.addTab("Funcionários", funcionarioView1);
+        jTabbedPane1.addTab("Estoque", estoqueView1);
 
         getContentPane().add(jTabbedPane1);
 
@@ -75,6 +79,8 @@ public class RestauranteView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private view.ClienteView clienteView;
+    private view.EstoqueView estoqueView1;
+    private view.FuncionarioView funcionarioView1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private view.PedidoView pedidoView;
     // End of variables declaration//GEN-END:variables

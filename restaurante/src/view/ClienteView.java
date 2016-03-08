@@ -27,39 +27,340 @@ public class ClienteView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        InputCliente_Nome = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        InputCliente_Rua = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        InputCliente_Cpf1 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        InputCliente_Telefone1 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        InputCliente_Numero = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        InputCliente_Bairro = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        InputCliente_Cidade = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        InputCliente_Data = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        botaoCliente_Limpar = new javax.swing.JButton();
+        botaoCliente_Salvar = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        InputPesquisa_Cliente = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        botaoCliente_Pesquisar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Clientes", 0, 0, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+
+        InputCliente_Nome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                InputCliente_NomeActionPerformed(evt);
             }
         });
+
+        jLabel1.setText("Nome :");
+        jLabel1.setToolTipText("");
+
+        InputCliente_Rua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InputCliente_RuaActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("CPF :");
+
+        InputCliente_Cpf1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InputCliente_Cpf1ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Telefone :");
+
+        InputCliente_Telefone1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InputCliente_Telefone1ActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setText("Endereço");
+
+        jLabel5.setText("Rua :");
+
+        InputCliente_Numero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InputCliente_NumeroActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Número :");
+
+        InputCliente_Bairro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InputCliente_BairroActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Bairro :");
+
+        InputCliente_Cidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InputCliente_CidadeActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Cidade :");
+
+        InputCliente_Data.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InputCliente_DataActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("Data :");
+
+        botaoCliente_Limpar.setText("Limpar");
+
+        botaoCliente_Salvar.setText("Salvar");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(InputCliente_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(InputCliente_Rua, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(InputCliente_Telefone1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(InputCliente_Cpf1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(InputCliente_Numero, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(InputCliente_Bairro, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(InputCliente_Cidade, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(botaoCliente_Limpar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botaoCliente_Salvar))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel9)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(InputCliente_Data, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(332, 332, 332)))
+                .addContainerGap(39, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(InputCliente_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(19, 19, 19)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(InputCliente_Cpf1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(InputCliente_Telefone1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(40, 40, 40)
+                .addComponent(jLabel4)
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(InputCliente_Rua, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(InputCliente_Numero, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(InputCliente_Bairro, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(InputCliente_Cidade, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(InputCliente_Data, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoCliente_Limpar)
+                    .addComponent(botaoCliente_Salvar))
+                .addGap(64, 64, 64))
+        );
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar", 0, 0, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+        jPanel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        InputPesquisa_Cliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InputPesquisa_ClienteActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setText("Nome / CPF :");
+
+        botaoCliente_Pesquisar.setText("Pesquisar");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nome", "CPF", "Código"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+        }
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel10)
+                .addGap(38, 38, 38)
+                .addComponent(InputPesquisa_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(botaoCliente_Pesquisar)
+                .addContainerGap(168, Short.MAX_VALUE))
+            .addComponent(jScrollPane1)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(InputPesquisa_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(botaoCliente_Pesquisar))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(165, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(162, 162, 162))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(157, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(120, 120, 120))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void InputCliente_NomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputCliente_NomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_InputCliente_NomeActionPerformed
+
+    private void InputCliente_RuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputCliente_RuaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputCliente_RuaActionPerformed
+
+    private void InputCliente_Cpf1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputCliente_Cpf1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputCliente_Cpf1ActionPerformed
+
+    private void InputCliente_Telefone1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputCliente_Telefone1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputCliente_Telefone1ActionPerformed
+
+    private void InputCliente_NumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputCliente_NumeroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputCliente_NumeroActionPerformed
+
+    private void InputCliente_BairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputCliente_BairroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputCliente_BairroActionPerformed
+
+    private void InputCliente_CidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputCliente_CidadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputCliente_CidadeActionPerformed
+
+    private void InputCliente_DataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputCliente_DataActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputCliente_DataActionPerformed
+
+    private void InputPesquisa_ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputPesquisa_ClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputPesquisa_ClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField InputCliente_Bairro;
+    private javax.swing.JTextField InputCliente_Cidade;
+    private javax.swing.JTextField InputCliente_Cpf1;
+    private javax.swing.JTextField InputCliente_Data;
+    private javax.swing.JTextField InputCliente_Nome;
+    private javax.swing.JTextField InputCliente_Numero;
+    private javax.swing.JTextField InputCliente_Rua;
+    private javax.swing.JTextField InputCliente_Telefone1;
+    private javax.swing.JTextField InputPesquisa_Cliente;
+    private javax.swing.JButton botaoCliente_Limpar;
+    private javax.swing.JButton botaoCliente_Pesquisar;
+    private javax.swing.JButton botaoCliente_Salvar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
