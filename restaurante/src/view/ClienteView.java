@@ -5,6 +5,9 @@
  */
 package view;
 
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author gabryel
@@ -16,6 +19,51 @@ public class ClienteView extends javax.swing.JPanel {
      */
     public ClienteView() {
         initComponents();
+        InputCliente_Codigo.setVisible(false);
+    }
+
+    public JTextField getInputCliente_Codigo() {
+        return InputCliente_Codigo;
+    }
+
+    public JTextField getInputCliente_Bairro() {
+        return InputCliente_Bairro;
+    }
+
+    public JTextField getInputCliente_Cidade() {
+        return InputCliente_Cidade;
+    }
+
+    public JTextField getInputCliente_Cpf() {
+        return InputCliente_Cpf;
+    }
+
+    public JTextField getInputCliente_Data() {
+        return InputCliente_Data;
+    }
+
+    public JTextField getInputCliente_Nome() {
+        return InputCliente_Nome;
+    }
+
+    public JTextField getInputCliente_Numero() {
+        return InputCliente_Numero;
+    }
+
+    public JTextField getInputCliente_Rua() {
+        return InputCliente_Rua;
+    }
+
+    public JTextField getInputCliente_Telefone() {
+        return InputCliente_Telefone;
+    }
+
+    public JTextField getInputPesquisa_Cliente() {
+        return InputPesquisa_Cliente;
+    }
+
+    public JTable getjTable1() {
+        return jTable1;
     }
 
     /**
@@ -32,9 +80,9 @@ public class ClienteView extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         InputCliente_Rua = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        InputCliente_Cpf1 = new javax.swing.JTextField();
+        InputCliente_Cpf = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        InputCliente_Telefone1 = new javax.swing.JTextField();
+        InputCliente_Telefone = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         InputCliente_Numero = new javax.swing.JTextField();
@@ -47,6 +95,7 @@ public class ClienteView extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         botaoCliente_Limpar = new javax.swing.JButton();
         botaoCliente_Salvar = new javax.swing.JButton();
+        InputCliente_Codigo = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         InputPesquisa_Cliente = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -54,7 +103,7 @@ public class ClienteView extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Clientes", 0, 0, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Clientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
         InputCliente_Nome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,17 +122,17 @@ public class ClienteView extends javax.swing.JPanel {
 
         jLabel2.setText("CPF :");
 
-        InputCliente_Cpf1.addActionListener(new java.awt.event.ActionListener() {
+        InputCliente_Cpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InputCliente_Cpf1ActionPerformed(evt);
+                InputCliente_CpfActionPerformed(evt);
             }
         });
 
         jLabel3.setText("Telefone :");
 
-        InputCliente_Telefone1.addActionListener(new java.awt.event.ActionListener() {
+        InputCliente_Telefone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InputCliente_Telefone1ActionPerformed(evt);
+                InputCliente_TelefoneActionPerformed(evt);
             }
         });
 
@@ -128,6 +177,12 @@ public class ClienteView extends javax.swing.JPanel {
 
         botaoCliente_Salvar.setText("Salvar");
 
+        InputCliente_Codigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InputCliente_CodigoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -135,6 +190,7 @@ public class ClienteView extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(InputCliente_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -149,8 +205,8 @@ public class ClienteView extends javax.swing.JPanel {
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(InputCliente_Telefone1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(InputCliente_Cpf1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(InputCliente_Telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(InputCliente_Cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -180,17 +236,19 @@ public class ClienteView extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(8, 8, 8)
+                .addComponent(InputCliente_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(InputCliente_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(InputCliente_Cpf1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(InputCliente_Cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(InputCliente_Telefone1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(InputCliente_Telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(40, 40, 40)
                 .addComponent(jLabel4)
@@ -221,7 +279,7 @@ public class ClienteView extends javax.swing.JPanel {
                 .addGap(64, 64, 64))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar", 0, 0, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
         jPanel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         InputPesquisa_Cliente.addActionListener(new java.awt.event.ActionListener() {
@@ -240,20 +298,29 @@ public class ClienteView extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Nome", "CPF", "Código"
+                "Código", "Nome", "CPF"
             }
         ) {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, true, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -306,13 +373,13 @@ public class ClienteView extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_InputCliente_RuaActionPerformed
 
-    private void InputCliente_Cpf1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputCliente_Cpf1ActionPerformed
+    private void InputCliente_CpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputCliente_CpfActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_InputCliente_Cpf1ActionPerformed
+    }//GEN-LAST:event_InputCliente_CpfActionPerformed
 
-    private void InputCliente_Telefone1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputCliente_Telefone1ActionPerformed
+    private void InputCliente_TelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputCliente_TelefoneActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_InputCliente_Telefone1ActionPerformed
+    }//GEN-LAST:event_InputCliente_TelefoneActionPerformed
 
     private void InputCliente_NumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputCliente_NumeroActionPerformed
         // TODO add your handling code here:
@@ -334,16 +401,21 @@ public class ClienteView extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_InputPesquisa_ClienteActionPerformed
 
+    private void InputCliente_CodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputCliente_CodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputCliente_CodigoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField InputCliente_Bairro;
     private javax.swing.JTextField InputCliente_Cidade;
-    private javax.swing.JTextField InputCliente_Cpf1;
+    private javax.swing.JTextField InputCliente_Codigo;
+    private javax.swing.JTextField InputCliente_Cpf;
     private javax.swing.JTextField InputCliente_Data;
     private javax.swing.JTextField InputCliente_Nome;
     private javax.swing.JTextField InputCliente_Numero;
     private javax.swing.JTextField InputCliente_Rua;
-    private javax.swing.JTextField InputCliente_Telefone1;
+    private javax.swing.JTextField InputCliente_Telefone;
     private javax.swing.JTextField InputPesquisa_Cliente;
     private javax.swing.JButton botaoCliente_Limpar;
     private javax.swing.JButton botaoCliente_Pesquisar;
