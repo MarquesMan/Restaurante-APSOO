@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
@@ -33,6 +34,8 @@ public class GerenciarClientes implements ActionListener{
     public GerenciarClientes(ClienteView view) {
         this.view = view;
         this.db = new Conexao();
+        Date date = new Date();
+        view.getInputCliente_Data().setText(dateFormat.format(date));
     }
     @Override
     public void actionPerformed(ActionEvent e){
@@ -56,10 +59,6 @@ public class GerenciarClientes implements ActionListener{
         view.getInputCliente_Nome().setText("");
         view.getInputCliente_Cpf().setText("");
         view.getInputCliente_Telefone().setText("");
-        view.getInputCliente_Rua().setText("");
-        view.getInputCliente_Numero().setText("");
-        view.getInputCliente_Bairro().setText("");
-        view.getInputCliente_Cidade().setText("");
         view.getInputCliente_Data().setText("");
         view.getInputCliente_Codigo().setText("");
         Date date = new Date();
@@ -68,7 +67,58 @@ public class GerenciarClientes implements ActionListener{
     }
 
     private void salva_cliente() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String nome, cpf, telefone, data;
+        int numero, codigo;
+        
+        if(   "".equals(view.getInputCliente_Nome().getText())
+            || "".equals(view.getInputCliente_Cpf().getText())
+            || "".equals(view.getInputCliente_Telefone().getText())
+            || "".equals(view.getInputCliente_Data().getText())){
+            return;
+        }
+        
+        nome = view.getInputCliente_Nome().getText();
+        cpf = view.getInputCliente_Cpf().getText();
+        telefone = view.getInputCliente_Telefone().getText();
+        data = view.getInputCliente_Data().getText();
+        
+        SimpleDateFormat from = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat to = new SimpleDateFormat("yyyy-MM-dd");
+        Date date;
+        
+        if("".equals(view.getInputCliente_Codigo().getText())){
+            try {
+                date = from.parse(data); // 01/02/2014
+                String mysqlString = to.format(date); // 2014-02-01
+                     
+                codigo = db.query_insert("pessoa", "nome, cpf, telefone", nome+"," +cpf+"," +telefone);
+            
+                //Erro na inserção
+                if(codigo == 0){
+                    return;
+                }
+        
+                db.query_insert("cliente", "idpessoa, data_cadastro", codigo+"," +mysqlString);
+            
+                LimparCamposCliente();
+            } catch (ParseException ex) {
+                Logger.getLogger(GerenciarClientes.class.getName()).log(Level.SEVERE, null, ex);
+            }    
+        }
+        
+        else{
+            codigo = Integer.parseInt(view.getInputCliente_Codigo().getText());
+            ResultSet query = db.query("SELECT idpessoa FROM cliente WHERE idcliente =" +codigo);
+            
+            try {
+                if(query.next()){
+                    db.query_update("pessoa", "nome =" +nome+ ",cpf =" +cpf+", telefone =" +telefone, "idpessoa ="+query.getInt("idpessoa"));
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(GerenciarClientes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+            
     }
 
     private void lista_clientes() {
@@ -119,10 +169,6 @@ public class GerenciarClientes implements ActionListener{
                 view.getInputCliente_Nome().setText(query.getString("nome"));
                 view.getInputCliente_Cpf().setText(query.getString("cpf"));
                 view.getInputCliente_Telefone().setText(query.getString("telefone"));
-                view.getInputCliente_Rua().setText(query.getString("rua"));
-                view.getInputCliente_Numero().setText(query.getString("numero"));
-                view.getInputCliente_Bairro().setText(query.getString("bairro"));
-                view.getInputCliente_Cidade().setText(query.getString("cidade"));
                 view.getInputCliente_Data().setText(dateFormat.format(query.getString("data")));
                 view.getInputCliente_Codigo().setText(query.getString("idpessoa"));
             }     

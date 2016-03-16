@@ -5,19 +5,72 @@
  */
 package view;
 
+import controller.GerenciarFuncionarios;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Leonardo
  */
 public class FuncionarioView extends javax.swing.JPanel {
-
+    private GerenciarFuncionarios FuncionariosListener;
     /**
      * Creates new form FuncionarioView
      */
     public FuncionarioView() {
         initComponents();
+        InputFuncionario_Codigo.setVisible(false);
+        
+        FuncionariosListener = new GerenciarFuncionarios(this);
+        botaoFuncionario_Limpar.addActionListener(FuncionariosListener);
+        botaoFuncionario_Salvar.addActionListener(FuncionariosListener);
+        botaoFuncionario_Pesquisar.addActionListener(FuncionariosListener);
     }
 
+    public JTextField getInputFuncionario_Codigo() {
+        return InputFuncionario_Codigo;
+    }
+    
+    public JTextField getInputFuncionario_Cpf() {
+        return InputFuncionario_Cpf;
+    }
+
+    public JTextField getInputFuncionario_Data() {
+        return InputFuncionario_Data;
+    }
+
+    public JTextField getInputFuncionario_Nome() {
+        return InputFuncionario_Nome;
+    }
+
+    public JTextField getInputFuncionario_Telefone() {
+        return InputFuncionario_Telefone;
+    }
+    
+    public JTextField getInputFuncionario_Cargo() {
+        return InputFuncionario_Cargo;
+    }
+    
+    public JTextField getInputFuncionario_Salario() {
+        return InputFuncionario_Salario;
+    }
+    
+    public JTextField getInputFuncionario_Usuario() {
+        return InputFuncionario_Usuario;
+    }
+    
+    public JTextField getInputFuncionario_Senha() {
+        return InputFuncionario_Senha;
+    }
+
+    public JTextField getInputPesquisa_Funcionario() {
+        return InputPesquisa_Funcionario;
+    }
+
+    public JTable getjTable1() {
+        return jTable1;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,13 +87,6 @@ public class FuncionarioView extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         InputFuncionario_Telefone = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        InputFuncionario_Rua = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        InputFuncionario_Numero = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        InputFuncionario_Bairro = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         InputFuncionario_Cargo = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -55,6 +101,7 @@ public class FuncionarioView extends javax.swing.JPanel {
         jLabel14 = new javax.swing.JLabel();
         botaoFuncionario_Limpar = new javax.swing.JButton();
         botaoFuncionario_Salvar = new javax.swing.JButton();
+        InputFuncionario_Codigo = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         InputPesquisa_Funcionario = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
@@ -62,7 +109,7 @@ public class FuncionarioView extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Funcionários", 0, 0, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Funcionários", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
         InputFuncionario_Nome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,33 +135,6 @@ public class FuncionarioView extends javax.swing.JPanel {
 
         jLabel3.setText("Telefone :");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("Endereço");
-
-        InputFuncionario_Rua.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InputFuncionario_RuaActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setText("Rua :");
-
-        InputFuncionario_Numero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InputFuncionario_NumeroActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setText("Número :");
-
-        InputFuncionario_Bairro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InputFuncionario_BairroActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setText("Bairro :");
-
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Cargo");
 
@@ -134,6 +154,7 @@ public class FuncionarioView extends javax.swing.JPanel {
 
         jLabel10.setText("Salário :");
 
+        InputFuncionario_Data.setEditable(false);
         InputFuncionario_Data.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InputFuncionario_DataActionPerformed(evt);
@@ -165,70 +186,71 @@ public class FuncionarioView extends javax.swing.JPanel {
 
         botaoFuncionario_Salvar.setText("Salvar");
 
+        InputFuncionario_Codigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InputFuncionario_CodigoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel4)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(InputFuncionario_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(InputFuncionario_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(InputFuncionario_Cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel12)
+                        .addComponent(jLabel8)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel5)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(InputFuncionario_Rua, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(6, 6, 6)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel9)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(InputFuncionario_Cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel10)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(InputFuncionario_Salario, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel11)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(InputFuncionario_Data, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel14)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(InputFuncionario_Senha, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(botaoFuncionario_Limpar)
+                                        .addGap(249, 249, 249)
+                                        .addComponent(botaoFuncionario_Salvar))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel13)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(InputFuncionario_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel3)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(InputFuncionario_Telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(InputFuncionario_Cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(InputFuncionario_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel6)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(InputFuncionario_Numero, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel7)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(InputFuncionario_Bairro, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel9)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(InputFuncionario_Cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel10)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(InputFuncionario_Salario, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel11)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(InputFuncionario_Data, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel14)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(InputFuncionario_Senha, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(botaoFuncionario_Limpar)
-                                .addGap(249, 249, 249)
-                                .addComponent(botaoFuncionario_Salvar))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(InputFuncionario_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(InputFuncionario_Telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(87, 87, 87)
+                .addComponent(InputFuncionario_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(InputFuncionario_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -240,21 +262,7 @@ public class FuncionarioView extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(InputFuncionario_Telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(InputFuncionario_Rua, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(InputFuncionario_Numero, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(InputFuncionario_Bairro, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addGap(18, 18, 18)
+                .addGap(14, 14, 14)
                 .addComponent(jLabel8)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -278,14 +286,14 @@ public class FuncionarioView extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(InputFuncionario_Senha, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoFuncionario_Limpar)
                     .addComponent(botaoFuncionario_Salvar))
                 .addContainerGap())
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar", 0, 0, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
         InputPesquisa_Funcionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -370,18 +378,6 @@ public class FuncionarioView extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_InputFuncionario_TelefoneActionPerformed
 
-    private void InputFuncionario_RuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputFuncionario_RuaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_InputFuncionario_RuaActionPerformed
-
-    private void InputFuncionario_NumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputFuncionario_NumeroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_InputFuncionario_NumeroActionPerformed
-
-    private void InputFuncionario_BairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputFuncionario_BairroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_InputFuncionario_BairroActionPerformed
-
     private void InputFuncionario_CargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputFuncionario_CargoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_InputFuncionario_CargoActionPerformed
@@ -406,15 +402,17 @@ public class FuncionarioView extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_InputPesquisa_FuncionarioActionPerformed
 
+    private void InputFuncionario_CodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputFuncionario_CodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputFuncionario_CodigoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField InputFuncionario_Bairro;
     private javax.swing.JTextField InputFuncionario_Cargo;
+    private javax.swing.JTextField InputFuncionario_Codigo;
     private javax.swing.JTextField InputFuncionario_Cpf;
     private javax.swing.JTextField InputFuncionario_Data;
     private javax.swing.JTextField InputFuncionario_Nome;
-    private javax.swing.JTextField InputFuncionario_Numero;
-    private javax.swing.JTextField InputFuncionario_Rua;
     private javax.swing.JTextField InputFuncionario_Salario;
     private javax.swing.JTextField InputFuncionario_Senha;
     private javax.swing.JTextField InputFuncionario_Telefone;
@@ -432,10 +430,6 @@ public class FuncionarioView extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
