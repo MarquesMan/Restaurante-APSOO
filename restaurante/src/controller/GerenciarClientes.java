@@ -61,6 +61,7 @@ public class GerenciarClientes implements ActionListener{
         view.getInputCliente_Telefone().setText("");
         view.getInputCliente_Data().setText("");
         view.getInputCliente_Codigo().setText("");
+        view.getInputPesquisa_Cliente().setText("");
         Date date = new Date();
         view.getInputCliente_Data().setText(dateFormat.format(date));
         clear_row((DefaultTableModel) view.getjTable1().getModel());
@@ -91,14 +92,14 @@ public class GerenciarClientes implements ActionListener{
                 date = from.parse(data); // 01/02/2014
                 String mysqlString = to.format(date); // 2014-02-01
                      
-                codigo = db.query_insert("pessoa", "nome, cpf, telefone", nome+"," +cpf+"," +telefone);
+                codigo = db.query_insert("pessoa", "nome, cpf, telefone", "'"+nome+"','" +cpf+"','" +telefone+"'");
             
                 //Erro na inserção
                 if(codigo == 0){
                     return;
                 }
         
-                db.query_insert("cliente", "idpessoa, data_cadastro", codigo+"," +mysqlString);
+                db.query_insert("cliente", "idpessoa, data_cadastro", codigo+", '" +mysqlString+"'");
             
                 LimparCamposCliente();
             } catch (ParseException ex) {
@@ -112,7 +113,7 @@ public class GerenciarClientes implements ActionListener{
             
             try {
                 if(query.next()){
-                    db.query_update("pessoa", "nome =" +nome+ ",cpf =" +cpf+", telefone =" +telefone, "idpessoa ="+query.getInt("idpessoa"));
+                    db.query_update("pessoa", "nome ='" +nome+ "' ,cpf = '" +cpf+"' , telefone = '" +telefone +"'", "idpessoa ="+query.getInt("idpessoa"));
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(GerenciarClientes.class.getName()).log(Level.SEVERE, null, ex);
@@ -156,21 +157,16 @@ public class GerenciarClientes implements ActionListener{
         String pesquisa = view.getInputPesquisa_Cliente().getText();
         
         DefaultTableModel row = (DefaultTableModel) view.getjTable1().getModel();
-        view.getInputCliente_Nome().setText(row.getValueAt(index, 0).toString());
         
-        if(!"".equals(pesquisa)){
-            where = "WHERE nome like '%"+pesquisa+"%' or cpf LIKE '%"+pesquisa+"%'";
-        }
-        
-        ResultSet query = db.query("SELECT * FROM cliente INNER JOIN pessoa ON  cliente.idpessoa = pessoa.idpessoa "+ where);
+        ResultSet query = db.query("SELECT * FROM cliente INNER JOIN pessoa ON  cliente.idpessoa = pessoa.idpessoa WHERE idcliente = "+row.getValueAt(index, 0).toString());
         
         try {
             if(query.next()){
                 view.getInputCliente_Nome().setText(query.getString("nome"));
                 view.getInputCliente_Cpf().setText(query.getString("cpf"));
                 view.getInputCliente_Telefone().setText(query.getString("telefone"));
-                view.getInputCliente_Data().setText(dateFormat.format(query.getString("data")));
-                view.getInputCliente_Codigo().setText(query.getString("idpessoa"));
+                view.getInputCliente_Data().setText(dateFormat.format(query.getDate("data_cadastro")));
+                view.getInputCliente_Codigo().setText(query.getString("idcliente"));
             }     
         } catch (SQLException ex) {
             Logger.getLogger(GerenciarPedidos.class.getName()).log(Level.SEVERE, null, ex);

@@ -6,6 +6,9 @@
 package view;
 
 import controller.GerenciarClientes;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -27,6 +30,19 @@ public class ClienteView extends javax.swing.JPanel {
         botaoCliente_Limpar.addActionListener(ClientesListener);
         botaoCliente_Salvar.addActionListener(ClientesListener);
         botaoCliente_Pesquisar.addActionListener(ClientesListener);
+        
+         jTable1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent me) {
+                JTable table =(JTable) me.getSource();
+                Point p = me.getPoint();
+                int row = table.rowAtPoint(p);
+                
+                if (me.getClickCount() >= 2 && row!= -1) {
+                       ClientesListener.setCliente_values(row);
+                }
+            }
+        });
     }
 
     public JTextField getInputCliente_Codigo() {
@@ -213,7 +229,7 @@ public class ClienteView extends javax.swing.JPanel {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {

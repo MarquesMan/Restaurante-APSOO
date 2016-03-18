@@ -41,6 +41,7 @@ public class Conexao {
 
         try {
             String sql = "INSERT INTO "+table+"("+fields+") VALUES ("+values+")";
+            System.out.println(sql);
             stm = this.con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);            
             int executeUpdate = stm.executeUpdate();
             
