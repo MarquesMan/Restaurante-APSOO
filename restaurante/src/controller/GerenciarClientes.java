@@ -69,7 +69,7 @@ public class GerenciarClientes implements ActionListener{
 
     private void salva_cliente() {
         String nome, cpf, telefone, data;
-        int numero, codigo;
+        int codigo;
         
         if(   "".equals(view.getInputCliente_Nome().getText())
             || "".equals(view.getInputCliente_Cpf().getText())

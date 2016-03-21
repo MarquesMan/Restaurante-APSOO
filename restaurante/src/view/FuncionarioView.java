@@ -6,6 +6,10 @@
 package view;
 
 import controller.GerenciarFuncionarios;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JCheckBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -26,6 +30,19 @@ public class FuncionarioView extends javax.swing.JPanel {
         botaoFuncionario_Limpar.addActionListener(FuncionariosListener);
         botaoFuncionario_Salvar.addActionListener(FuncionariosListener);
         botaoFuncionario_Pesquisar.addActionListener(FuncionariosListener);
+        
+        jTable1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent me) {
+                JTable table =(JTable) me.getSource();
+                Point p = me.getPoint();
+                int row = table.rowAtPoint(p);
+                
+                if (me.getClickCount() >= 2 && row!= -1) {
+                       FuncionariosListener.setFuncionario_values(row);
+                }
+            }
+        });
     }
 
     public JTextField getInputFuncionario_Codigo() {
@@ -52,7 +69,7 @@ public class FuncionarioView extends javax.swing.JPanel {
         return InputFuncionario_Cargo;
     }
     
-    public JTextField getInputFuncionario_Salario() {
+    public JNumberFormatField getInputFuncionario_Salario() {
         return InputFuncionario_Salario;
     }
     
@@ -70,6 +87,10 @@ public class FuncionarioView extends javax.swing.JPanel {
 
     public JTable getjTable1() {
         return jTable1;
+    }
+    
+    public JCheckBox getFuncionario_Ativo(){
+        return checkFuncionario_Ativo;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -90,7 +111,6 @@ public class FuncionarioView extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         InputFuncionario_Cargo = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        InputFuncionario_Salario = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         InputFuncionario_Data = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
@@ -102,6 +122,8 @@ public class FuncionarioView extends javax.swing.JPanel {
         botaoFuncionario_Limpar = new javax.swing.JButton();
         botaoFuncionario_Salvar = new javax.swing.JButton();
         InputFuncionario_Codigo = new javax.swing.JTextField();
+        InputFuncionario_Salario = new view.JNumberFormatField();
+        checkFuncionario_Ativo = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
         InputPesquisa_Funcionario = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
@@ -146,12 +168,6 @@ public class FuncionarioView extends javax.swing.JPanel {
 
         jLabel9.setText("Cargo :");
 
-        InputFuncionario_Salario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InputFuncionario_SalarioActionPerformed(evt);
-            }
-        });
-
         jLabel10.setText("Salário :");
 
         InputFuncionario_Data.setEditable(false);
@@ -192,6 +208,10 @@ public class FuncionarioView extends javax.swing.JPanel {
             }
         });
 
+        InputFuncionario_Salario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        checkFuncionario_Ativo.setText("Ativo");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -218,18 +238,6 @@ public class FuncionarioView extends javax.swing.JPanel {
                                     .addComponent(jLabel9)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(InputFuncionario_Cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel10)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(InputFuncionario_Salario, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel11)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(InputFuncionario_Data, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel14)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(InputFuncionario_Senha, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(botaoFuncionario_Limpar)
@@ -238,7 +246,21 @@ public class FuncionarioView extends javax.swing.JPanel {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel13)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(InputFuncionario_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(InputFuncionario_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel10))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(InputFuncionario_Salario, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+                                        .addComponent(InputFuncionario_Data, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel14)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(checkFuncionario_Ativo)
+                                        .addComponent(InputFuncionario_Senha, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel3)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -270,8 +292,8 @@ public class FuncionarioView extends javax.swing.JPanel {
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(InputFuncionario_Salario, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
+                    .addComponent(jLabel10)
+                    .addComponent(InputFuncionario_Salario, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(InputFuncionario_Data, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -286,7 +308,9 @@ public class FuncionarioView extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(InputFuncionario_Senha, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(checkFuncionario_Ativo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoFuncionario_Limpar)
                     .addComponent(botaoFuncionario_Salvar))
@@ -311,18 +335,30 @@ public class FuncionarioView extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Nome", "CPF", "Código"
+                "Código", "Nome", "CPF"
             }
         ) {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -382,10 +418,6 @@ public class FuncionarioView extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_InputFuncionario_CargoActionPerformed
 
-    private void InputFuncionario_SalarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputFuncionario_SalarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_InputFuncionario_SalarioActionPerformed
-
     private void InputFuncionario_DataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputFuncionario_DataActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_InputFuncionario_DataActionPerformed
@@ -413,7 +445,7 @@ public class FuncionarioView extends javax.swing.JPanel {
     private javax.swing.JTextField InputFuncionario_Cpf;
     private javax.swing.JTextField InputFuncionario_Data;
     private javax.swing.JTextField InputFuncionario_Nome;
-    private javax.swing.JTextField InputFuncionario_Salario;
+    private view.JNumberFormatField InputFuncionario_Salario;
     private javax.swing.JTextField InputFuncionario_Senha;
     private javax.swing.JTextField InputFuncionario_Telefone;
     private javax.swing.JTextField InputFuncionario_Usuario;
@@ -421,6 +453,7 @@ public class FuncionarioView extends javax.swing.JPanel {
     private javax.swing.JButton botaoFuncionario_Limpar;
     private javax.swing.JButton botaoFuncionario_Pesquisar;
     private javax.swing.JButton botaoFuncionario_Salvar;
+    private javax.swing.JCheckBox checkFuncionario_Ativo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
