@@ -5,17 +5,54 @@
  */
 package view;
 
+import controller.GerenciarEstoque;
+import datechooser.beans.DateChooserCombo;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JComboBox;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Leonardo
  */
 public class EstoqueView extends javax.swing.JPanel {
-
+    private GerenciarEstoque EstoqueListener;
     /**
      * Creates new form EstoqueView
      */
     public EstoqueView() {
         initComponents();
+        
+        EstoqueListener = new GerenciarEstoque(this);
+        
+        jTable1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent me) {
+                JTable table =(JTable) me.getSource();
+                Point p = me.getPoint();
+                int row = table.rowAtPoint(p);
+                
+                if (me.getClickCount() >= 2 && row!= -1) {
+                       EstoqueListener.setProduto_values(row);
+                }
+            }
+        });
+        
+        jTable2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent me) {
+                JTable table =(JTable) me.getSource();
+                Point p = me.getPoint();
+                int row = table.rowAtPoint(p);
+                
+                if (me.getClickCount() >= 2 && row!= -1) {
+                       EstoqueListener.setItem_values(row);
+                }
+            }
+        });
     }
 
     /**
@@ -39,7 +76,6 @@ public class EstoqueView extends javax.swing.JPanel {
         jPanel9 = new javax.swing.JPanel();
         InputItem_Produto = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        InputItem_Validade = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         InputItem_Lote = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -47,13 +83,12 @@ public class EstoqueView extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         botaoItem_Limpar = new javax.swing.JButton();
         botaoItem_Salvar = new javax.swing.JButton();
+        InputItem_Validade = new datechooser.beans.DateChooserCombo();
         jPanel1 = new javax.swing.JPanel();
         InputPesquisa_Nome = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        InputPesquisa_Categoria = new javax.swing.JTextField();
+        SelectPesquisa = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
-        InputPesquisa_Validade = new javax.swing.JTextField();
         InputPesquisa_Lote = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -65,6 +100,8 @@ public class EstoqueView extends javax.swing.JPanel {
         jTable2 = new javax.swing.JTable();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        SelectPesquisa_Categoria = new javax.swing.JComboBox<>();
+        InputPesquisa_Validade = new datechooser.beans.DateChooserCombo();
 
         setPreferredSize(new java.awt.Dimension(1212, 707));
 
@@ -79,15 +116,25 @@ public class EstoqueView extends javax.swing.JPanel {
         jLabel3.setText("Quantidade :");
 
         botaoProduto_Limpar.setText("Limpar");
+        botaoProduto_Limpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoProduto_LimparActionPerformed(evt);
+            }
+        });
 
         botaoProduto_Salvar.setText("Salvar");
+        botaoProduto_Salvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoProduto_SalvarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(54, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(botaoProduto_Limpar)
                     .addComponent(jLabel1)
@@ -135,42 +182,58 @@ public class EstoqueView extends javax.swing.JPanel {
         jLabel7.setText("Quantidade :");
 
         botaoItem_Limpar.setText("Limpar");
+        botaoItem_Limpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoItem_LimparActionPerformed(evt);
+            }
+        });
 
         botaoItem_Salvar.setText("Salvar");
+        botaoItem_Salvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoItem_SalvarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(botaoItem_Limpar)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(InputItem_Lote, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
-                        .addComponent(InputItem_Validade, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(InputItem_Produto, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(InputItem_Quantidade, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(botaoItem_Salvar))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(InputItem_Lote, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+                            .addComponent(InputItem_Quantidade, javax.swing.GroupLayout.Alignment.LEADING)))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(botaoItem_Limpar)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(InputItem_Produto, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botaoItem_Salvar)
+                            .addComponent(InputItem_Validade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(54, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(69, 69, 69)
+                .addGap(31, 31, 31)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(InputItem_Validade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(InputItem_Produto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(InputItem_Validade, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(InputItem_Lote, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -179,11 +242,11 @@ public class EstoqueView extends javax.swing.JPanel {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(InputItem_Quantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(64, 64, 64)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoItem_Limpar)
                     .addComponent(botaoItem_Salvar))
-                .addGap(45, 45, 45))
+                .addGap(65, 65, 65))
         );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
@@ -191,7 +254,7 @@ public class EstoqueView extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Nome :");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Produto", "Item" }));
+        SelectPesquisa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Produto", "Item" }));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("Categoria :");
@@ -203,8 +266,18 @@ public class EstoqueView extends javax.swing.JPanel {
         jLabel11.setText("Lote :");
 
         botaoPesquisa_Limpar.setText("Limpar");
+        botaoPesquisa_Limpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoPesquisa_LimparActionPerformed(evt);
+            }
+        });
 
         botaoPesquisa_Pesquisar.setText("Pesquisar");
+        botaoPesquisa_Pesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoPesquisa_PesquisarActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -259,11 +332,13 @@ public class EstoqueView extends javax.swing.JPanel {
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setText("Itens");
 
+        SelectPesquisa_Categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Comida", "Bebida" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -278,51 +353,50 @@ public class EstoqueView extends javax.swing.JPanel {
                                 .addComponent(jLabel12)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 68, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(InputPesquisa_Validade, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(InputPesquisa_Categoria)
-                                .addComponent(InputPesquisa_Nome)
-                                .addComponent(InputPesquisa_Lote, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(botaoPesquisa_Limpar)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(botaoPesquisa_Pesquisar))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(SelectPesquisa, 0, 328, Short.MAX_VALUE)
+                            .addComponent(InputPesquisa_Nome)
+                            .addComponent(InputPesquisa_Lote, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(botaoPesquisa_Limpar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botaoPesquisa_Pesquisar))
+                            .addComponent(SelectPesquisa_Categoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(InputPesquisa_Validade, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE))
                         .addGap(209, 209, 209))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SelectPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(InputPesquisa_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(InputPesquisa_Categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
+                    .addComponent(jLabel9)
+                    .addComponent(SelectPesquisa_Categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(InputPesquisa_Validade, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
-                .addGap(7, 7, 7)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(InputPesquisa_Lote, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11)
+                    .addComponent(InputPesquisa_Lote, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botaoPesquisa_Limpar)
                     .addComponent(botaoPesquisa_Pesquisar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -350,22 +424,105 @@ public class EstoqueView extends javax.swing.JPanel {
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void botaoProduto_LimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoProduto_LimparActionPerformed
+        EstoqueListener.LimparProduto();
+    }//GEN-LAST:event_botaoProduto_LimparActionPerformed
 
+    private void botaoProduto_SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoProduto_SalvarActionPerformed
+        EstoqueListener.SalvarProduto();
+    }//GEN-LAST:event_botaoProduto_SalvarActionPerformed
+
+    private void botaoItem_LimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoItem_LimparActionPerformed
+        EstoqueListener.LimparItem();
+    }//GEN-LAST:event_botaoItem_LimparActionPerformed
+
+    private void botaoItem_SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoItem_SalvarActionPerformed
+        EstoqueListener.SalvarItem();
+    }//GEN-LAST:event_botaoItem_SalvarActionPerformed
+
+    private void botaoPesquisa_LimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPesquisa_LimparActionPerformed
+        EstoqueListener.LimparPesquisa();
+    }//GEN-LAST:event_botaoPesquisa_LimparActionPerformed
+
+    private void botaoPesquisa_PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPesquisa_PesquisarActionPerformed
+        EstoqueListener.Pesquisar();
+    }//GEN-LAST:event_botaoPesquisa_PesquisarActionPerformed
+
+    public JTextField getInputItem_Lote() {
+        return InputItem_Lote;
+    }
+
+    public JTextField getInputItem_Produto() {
+        return InputItem_Produto;
+    }
+
+    public JTextField getInputItem_Quantidade() {
+        return InputItem_Quantidade;
+    }
+
+    public datechooser.beans.DateChooserCombo getInputItem_Validade() {
+        return InputItem_Validade;
+    }
+
+    public JComboBox<String> getSelectPesquisa_Categoria() {
+        return SelectPesquisa_Categoria;
+    }
+
+    public JTextField getInputPesquisa_Lote() {
+        return InputPesquisa_Lote;
+    }
+
+    public JTextField getInputPesquisa_Nome() {
+        return InputPesquisa_Nome;
+    }
+
+    public DateChooserCombo getInputPesquisa_Validade() {
+        return InputPesquisa_Validade;
+    }
+
+    public JTextField getInputProduto_Nome() {
+        return InputProduto_Nome;
+    }
+
+    public JTextField getInputProduto_Quantidade() {
+        return InputProduto_Quantidade;
+    }
+
+    public JComboBox<String> getSelectProduto_Categoria() {
+        return SelectProduto_Categoria;
+    }
+
+    public JTable getjTable1() {
+        return jTable1;
+    }
+
+    public JTable getjTable2() {
+        return jTable2;
+    }
+
+    public JComboBox<String> getSelectPesquisa() {
+        return SelectPesquisa;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField InputItem_Lote;
     private javax.swing.JTextField InputItem_Produto;
     private javax.swing.JTextField InputItem_Quantidade;
-    private javax.swing.JTextField InputItem_Validade;
-    private javax.swing.JTextField InputPesquisa_Categoria;
+    private datechooser.beans.DateChooserCombo InputItem_Validade;
     private javax.swing.JTextField InputPesquisa_Lote;
     private javax.swing.JTextField InputPesquisa_Nome;
-    private javax.swing.JTextField InputPesquisa_Validade;
+    private datechooser.beans.DateChooserCombo InputPesquisa_Validade;
     private javax.swing.JTextField InputProduto_Nome;
     private javax.swing.JTextField InputProduto_Quantidade;
+    private javax.swing.JComboBox<String> SelectPesquisa;
+    private javax.swing.JComboBox<String> SelectPesquisa_Categoria;
     private javax.swing.JComboBox<String> SelectProduto_Categoria;
     private javax.swing.JButton botaoItem_Limpar;
     private javax.swing.JButton botaoItem_Salvar;
@@ -373,7 +530,6 @@ public class EstoqueView extends javax.swing.JPanel {
     private javax.swing.JButton botaoPesquisa_Pesquisar;
     private javax.swing.JButton botaoProduto_Limpar;
     private javax.swing.JButton botaoProduto_Salvar;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
