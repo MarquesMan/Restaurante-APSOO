@@ -54,7 +54,7 @@ public class GerenciarPedidos implements WindowListener, ActionListener{
         switch(e.getActionCommand() ){
         
             case "Finalizar":
-                System.out.println("Foi");
+                finalizar();
                 break;
             case "Salvar":
                 salva_pedido();
@@ -507,7 +507,7 @@ public class GerenciarPedidos implements WindowListener, ActionListener{
                         nomeProduto = query_p.getString("nome_produto");   
                         precoProduto =  query_p.getString("preco");
                         precoTotalFloat+=  query_p.getFloat("preco");
-                        System.out.println(codigoProduto);
+                        
                         tableProduto.addRow(new Object[]{codigoProduto,nomeProduto,precoProduto,false});
                     }
                     
@@ -520,6 +520,58 @@ public class GerenciarPedidos implements WindowListener, ActionListener{
             
             tableProduto.removeRow(0);
         } catch (SQLException ex) {
+            Logger.getLogger(GerenciarPedidos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    private void finalizar() {
+
+        int cliente, funcionario;
+        float pagamento, troco;
+        String data, mesa;
+        
+        
+        if(   "".equals(view.getInputPedido_Cliente().getText())
+           || "".equals(view.getInputPedido_Mesa().getText())){
+            return;
+        }
+
+        cliente = Integer.parseInt(view.getInputPedido_Cliente().getText());
+        funcionario = 1;
+        mesa = view.getInputPedido_Mesa().getText();
+        data = view.getInputPedido_Data().getText();
+        pagamento = view.getInputPedido_Pago().getValue().floatValue();
+        troco = view.getInputPedido_Troco().getValue().floatValue();
+        
+        SimpleDateFormat from = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat to = new SimpleDateFormat("yyyy-MM-dd");
+        Date date;
+        try {
+            
+            date = from.parse(data); // 01/02/2014
+            String mysqlString = to.format(date);     // 2014-02-01
+      
+            int id_pedido = db.query_update("pedido_finalizados", "idcliente, idfuncionario, idmesa, data, pagamento, troco",
+                            cliente+", "+funcionario+", '"+mesa+"', '"+mysqlString+"', "+pagamento+", "+troco, "idpedido="+);
+        
+            //Erro na inserção
+            if(id_pedido == 0){
+                return;
+            }
+        
+            DefaultTableModel tabela_produtos = (DefaultTableModel) view.getTabelaPedido_Produtos().getModel();
+            int rowCount = tabela_produtos.getRowCount();
+     
+            for(int i = 0; i < rowCount; i++){
+                int iditem_menu = Integer.parseInt(tabela_produtos.getValueAt(i, 0).toString());
+            
+                db.query_insert("itens_pedidos", "idpedido, iditem_menu", id_pedido+", "+iditem_menu);
+            }
+            
+            limparCamposPedido();
+            
+        } catch (ParseException ex) {
             Logger.getLogger(GerenciarPedidos.class.getName()).log(Level.SEVERE, null, ex);
         }
 

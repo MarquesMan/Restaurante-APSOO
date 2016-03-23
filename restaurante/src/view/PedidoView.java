@@ -45,7 +45,7 @@ public class PedidoView extends javax.swing.JPanel {
         metodoPesquisaPedido.addActionListener(PedidosListener);
         InputPesquisa_Pedido.addActionListener(PedidosListener);
         botaoMesas.addActionListener(PedidosListener);
-        
+        idPedido.setVisible(false);
         TabelaPedido_Pesquisa.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent me) {
@@ -166,6 +166,7 @@ public class PedidoView extends javax.swing.JPanel {
         botaoPedido_Pesquisar = new javax.swing.JButton();
         JScrollPane3 = new javax.swing.JScrollPane();
         TabelaPedido_Pesquisa = new view.CustomJTable();
+        idPedido = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -341,6 +342,8 @@ public class PedidoView extends javax.swing.JPanel {
 
         JScrollPane3.setViewportView(TabelaPedido_Pesquisa);
 
+        idPedido.setEditable(false);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -352,21 +355,26 @@ public class PedidoView extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(metodoPesquisaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(labelPedido_MetodoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(InputPesquisa_Pedido, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
                                 .addComponent(botaoPedido_Pesquisar)))
-                        .addGap(0, 171, Short.MAX_VALUE)))
+                        .addGap(0, 171, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(idPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(jLabel13)
+                .addGap(49, 49, 49)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel13)
+                    .addComponent(idPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(metodoPesquisaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -589,6 +597,7 @@ public class PedidoView extends javax.swing.JPanel {
     private javax.swing.JButton botaoPedido_Pesquisar;
     private javax.swing.JButton botaoPedido_Salvar;
     private javax.swing.JButton botaoProduto_Remover;
+    private javax.swing.JTextField idPedido;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
