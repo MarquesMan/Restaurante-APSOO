@@ -188,6 +188,7 @@ public class FuncionarioView extends javax.swing.JPanel {
             }
         });
 
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel13.setText("Usuário :");
 
         InputFuncionario_Senha.addActionListener(new java.awt.event.ActionListener() {
@@ -196,6 +197,7 @@ public class FuncionarioView extends javax.swing.JPanel {
             }
         });
 
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel14.setText("Senha :");
 
         botaoFuncionario_Limpar.setText("Limpar");
@@ -233,7 +235,7 @@ public class FuncionarioView extends javax.swing.JPanel {
                         .addComponent(jLabel8)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(6, 6, 6)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel9)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -256,10 +258,12 @@ public class FuncionarioView extends javax.swing.JPanel {
                                         .addComponent(InputFuncionario_Salario, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
                                         .addComponent(InputFuncionario_Data, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel14)
+                                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(checkFuncionario_Ativo)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(checkFuncionario_Ativo)
+                                            .addGap(277, 277, 277))
                                         .addComponent(InputFuncionario_Senha, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel3)
@@ -270,7 +274,7 @@ public class FuncionarioView extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(87, 87, 87)
+                .addContainerGap(117, Short.MAX_VALUE)
                 .addComponent(InputFuncionario_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -310,7 +314,7 @@ public class FuncionarioView extends javax.swing.JPanel {
                     .addComponent(jLabel14))
                 .addGap(18, 18, 18)
                 .addComponent(checkFuncionario_Ativo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoFuncionario_Limpar)
                     .addComponent(botaoFuncionario_Salvar))
@@ -366,13 +370,16 @@ public class FuncionarioView extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel15)
-                .addGap(36, 36, 36)
-                .addComponent(InputPesquisa_Funcionario, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(botaoFuncionario_Pesquisar)
-                .addContainerGap(162, Short.MAX_VALUE))
-            .addComponent(jScrollPane1)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addGap(36, 36, 36)
+                        .addComponent(InputPesquisa_Funcionario, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(botaoFuncionario_Pesquisar)
+                        .addGap(0, 152, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -216,13 +216,26 @@ public class PedidoView extends javax.swing.JPanel {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         TabelaPedido_Produtos.setRowHeight(30);
         jScrollPane1.setViewportView(TabelaPedido_Produtos);
+        if (TabelaPedido_Produtos.getColumnModel().getColumnCount() > 0) {
+            TabelaPedido_Produtos.getColumnModel().getColumn(0).setResizable(false);
+            TabelaPedido_Produtos.getColumnModel().getColumn(1).setResizable(false);
+            TabelaPedido_Produtos.getColumnModel().getColumn(2).setResizable(false);
+            TabelaPedido_Produtos.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         InputPedido_Data.setEditable(false);
         try {
@@ -272,7 +285,7 @@ public class PedidoView extends javax.swing.JPanel {
                                     .addComponent(InputPedido_Data, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(InputPedido_Mesa, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(botaoMesas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGap(0, 46, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -532,7 +545,7 @@ public class PedidoView extends javax.swing.JPanel {
         }else if(index==1){
             PedidosListener.lista_menu();
         }else{
-            // Lista pedidos
+            PedidosListener.lista_pedidos();
         }
 
     }//GEN-LAST:event_InputPesquisa_PedidoKeyReleased

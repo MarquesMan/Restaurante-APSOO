@@ -5,7 +5,8 @@
  */
 package controller;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,6 +20,8 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -26,7 +29,6 @@ import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import model.Conexao;
 import view.PedidoView;
-
 
 /**
  *
@@ -47,6 +49,8 @@ public class GerenciarPedidos implements WindowListener, ActionListener{
     //Identifica os eventos dos botões e xecuta a açao correspondente
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+        
         switch(e.getActionCommand() ){
         
             case "Finalizar":
@@ -99,7 +103,15 @@ public class GerenciarPedidos implements WindowListener, ActionListener{
                 J.addWindowListener(this);
                 break;
             default:
-                System.out.println(e.getActionCommand() );
+                if( JButton.class.cast(e.getSource()).isSelected()){
+                    JButton.class.cast(e.getSource()).setSelected(false);
+                    JButton.class.cast(e.getSource()).setBackground( Color.decode("#5cb85c"));
+                }
+                else{
+                    JButton.class.cast(e.getSource()).setSelected(true);
+                    JButton.class.cast(e.getSource()).setBackground(Color.decode("#337ab7"));
+                }
+                
                 break;
         }
             
@@ -107,19 +119,76 @@ public class GerenciarPedidos implements WindowListener, ActionListener{
     
     private void implantarMesas(JFrame J){
         
-    ResultSet query = db.query("SELECT * FROM mesa");
-
-    try {
-        while(query.next()){
-           // row.addRow(new Object[]{query.getInt("idcliente"), query.getString("nome"), query.getString("cpf")});
-           JButton button = new JButton(query.getString("idmesa"));
-           button.setSelected(true);
-           J.add(button);
-        }
-    } catch (SQLException ex) {
-        Logger.getLogger(GerenciarPedidos.class.getName()).log(Level.SEVERE, null, ex);
-    } 
         
+    if(view.getInputPedido_Mesa().getText().equals("")){    
+        
+        ResultSet query = db.query("SELECT * FROM mesa");
+
+        try {
+            while(query.next()){
+               // row.addRow(new Object[]{query.getInt("idcliente"), query.getString("nome"), query.getString("cpf")});
+               JButton button = new JButton(query.getString("idmesa"));
+
+               if(query.getString("status").equals("livre")){
+                   button.setBackground( Color.decode("#5cb85c"));
+                   button.setForeground( Color.white);
+               }else{
+                   button.setBackground( Color.decode("#d9534f"));
+                   button.setEnabled(false);
+                   //button.getModel().setPressed(false);
+                   button.setForeground( Color.white);
+               }
+
+               button.addActionListener(this);
+               J.add(button);
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GerenciarPedidos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }else{
+        
+        Map<String,String> MesasDict = new HashMap<>();
+        
+        String[] mesaString = view.getInputPedido_Mesa().getText().split(";");
+
+        for(int i = 0; i < mesaString.length ; ++i){
+            MesasDict.put(mesaString[i], "true" );
+            
+        }
+        
+        ResultSet query = db.query("SELECT * FROM mesa");
+
+        try {
+            while(query.next()){
+               // row.addRow(new Object[]{query.getInt("idcliente"), query.getString("nome"), query.getString("cpf")});
+               JButton button = new JButton(query.getString("idmesa"));
+                
+               if(query.getString("status").equals("livre")){
+                   
+                   if(MesasDict.containsKey(query.getString("idmesa"))){
+                      button.setBackground( Color.decode("#337ab7"));  
+                      button.setSelected(true);
+                   }
+                   else
+                       button.setBackground( Color.decode("#5cb85c"));
+                   
+                   button.setForeground( Color.white);
+               }else{
+                   button.setBackground( Color.decode("#d9534f"));
+                   button.setEnabled(false);
+                   //button.getModel().setPressed(false);
+                   button.setForeground( Color.white);
+               }
+
+               button.addActionListener(this);
+               J.add(button);
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GerenciarPedidos.class.getName()).log(Level.SEVERE, null, ex);
+        }          
+    }    
         
         
     }
@@ -281,6 +350,7 @@ public class GerenciarPedidos implements WindowListener, ActionListener{
      
     
     public void salva_pedido(){
+        
         int cliente, funcionario;
         float pagamento, troco;
         String data, mesa;
@@ -307,7 +377,7 @@ public class GerenciarPedidos implements WindowListener, ActionListener{
             String mysqlString = to.format(date);     // 2014-02-01
       
             int id_pedido = db.query_insert("pedido", "idcliente, idfuncionario, idmesa, data, pagamento, troco",
-                            cliente+", "+funcionario+", "+mesa+", '"+mysqlString+"', "+pagamento+", "+troco);
+                            cliente+", "+funcionario+", '"+mesa+"', '"+mysqlString+"', "+pagamento+", "+troco);
         
             //Erro na inserção
             if(id_pedido == 0){
@@ -355,35 +425,56 @@ public class GerenciarPedidos implements WindowListener, ActionListener{
 
     @Override
     public void windowClosing(WindowEvent we) {
-        System.out.println(we.getWindow().toString());
+        switch(we.getWindow().getName()){
+            case "MesasJanela":
+                Component[] componentes = JFrame.class.cast(we.getSource()).getContentPane().getComponents();
+                String mesasString = "";
+                JButton aux;
+                for(int i = 0; i < componentes.length;  ++i ){
+                    aux = (JButton)componentes[i];
+                    if(JButton.class.cast(componentes[i]).isSelected()){
+                        mesasString+=aux.getText()+";";
+                    }
+                }
+                
+                view.getInputPedido_Mesa().setText(mesasString);
+                
+                break;
+            default:
+                System.out.println("HA!");
+                break;
+        }
+    
     }
 
     @Override
     public void windowClosed(WindowEvent we) {
-        System.out.println(we.getWindow().toString());
+
     }
 
     @Override
     public void windowIconified(WindowEvent we) {
-         System.out.println(we.getWindow().toString());
+         //System.out.println(we.getWindow().toString());
     }
 
     @Override
     public void windowDeiconified(WindowEvent we) {
-         System.out.println(we.getWindow().toString());
+         //System.out.println(we.getWindow().toString());
     }
 
     @Override
     public void windowActivated(WindowEvent we) {
-         System.out.println(we.getWindow().toString());
+        // System.out.println(we.getWindow().toString());
     }
 
     @Override
     public void windowDeactivated(WindowEvent we) {
-         System.out.println(we.getWindow().toString());
+      //   System.out.println(we.getWindow().toString());
     }
 
     public void setPedidosOnTudo(int index) {
+        
+        limparCamposPedido();
         
         String nomeProduto,
                precoProduto,
@@ -394,52 +485,43 @@ public class GerenciarPedidos implements WindowListener, ActionListener{
         
         DefaultTableModel tablePesquisa = (DefaultTableModel) view.getTabelaPedido_Pesquisa().getModel();
         DefaultTableModel tableProduto = (DefaultTableModel) view.getTabelaPedido_Produtos().getModel();
-        
+       
         ResultSet query = db.query("SELECT * FROM pedido  WHERE idpedido="+tablePesquisa.getValueAt(index, 0).toString());
         
         
         try {
+            tableProduto.addRow(new Object[]{"1","2","30.0",false});
             
-            query.next();
-            
-            view.getInputPedido_Cliente().setText(query.getString("idcliente"));
-            
-            try {
-                view.getInputPedido_Data().setText( dateFormat.parse(query.getString("data")).toString() );
-            } catch (ParseException ex) {
-                Logger.getLogger(GerenciarPedidos.class.getName()).log(Level.SEVERE, null, ex);
+            if(query.next()){
+                view.getInputPedido_Cliente().setText(query.getString("idcliente"));
+                view.getInputPedido_Data().setText( dateFormat.format(query.getDate("data")) );
+                view.getInputPedido_Mesa().setText(query.getString("idmesa"));
+                
+                ResultSet query_p = db.query("SELECT * FROM itens_pedidos as ip INNER JOIN menu on ip.iditem_menu=menu.iditem_menu  WHERE idpedido="+tablePesquisa.getValueAt(index, 0).toString());
+                precoTotalFloat = Float.parseFloat("0");
+
+                try {
+
+                    while(query_p.next()){   
+                        codigoProduto = query_p.getString("iditem_menu");
+                        nomeProduto = query_p.getString("nome_produto");   
+                        precoProduto =  query_p.getString("preco");
+                        precoTotalFloat+=  query_p.getFloat("preco");
+                        System.out.println(codigoProduto);
+                        tableProduto.addRow(new Object[]{codigoProduto,nomeProduto,precoProduto,false});
+                    }
+                    
+                    view.getInputPedido_Preco().setValue(new BigDecimal(Float.toString(precoTotalFloat)));
+                    
+                } catch (SQLException ex) {
+                    Logger.getLogger(GerenciarPedidos.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             
-            view.getInputPedido_Mesa().setText(query.getString("idmesa"));
+            tableProduto.removeRow(0);
         } catch (SQLException ex) {
             Logger.getLogger(GerenciarPedidos.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        
-        
-        query = db.query("SELECT * FROM itens_pedidos as ip INNER JOIN menu on ip.iditem_menu=menu.iditem_menu  WHERE idpedido="+tablePesquisa.getValueAt(index, 0).toString());
-        precoTotalFloat = Float.parseFloat("0");
-        
-        try {
-
-            while(query.next()){   
-            
-                      
-                codigoProduto = query.getString("iditem_menu");
-                nomeProduto = query.getString("nome_produto");   
-                precoProduto =  query.getString("preco");
-                precoTotalFloat+=  query.getFloat("preco");
-
-                tableProduto.addRow(new Object[]{codigoProduto,nomeProduto,precoProduto,false});
-
-            
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(GerenciarPedidos.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        view.getInputPedido_Preco().setValue(new BigDecimal(Float.toString(precoTotalFloat)));
-       
 
     }
 
