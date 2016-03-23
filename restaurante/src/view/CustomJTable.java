@@ -82,6 +82,35 @@ public class CustomJTable extends JTable {
         this.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
         this.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
     }
+    
+    public void setTabelaPedidos(){
+        this.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Pedido","Cliente", "Mesas"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class,java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+               false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        
+        this.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
+        this.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
+    }
    
     
 }

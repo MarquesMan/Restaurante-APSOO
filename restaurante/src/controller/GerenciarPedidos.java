@@ -5,8 +5,12 @@
  */
 package controller;
 
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,6 +21,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import model.Conexao;
 import view.PedidoView;
@@ -26,7 +32,7 @@ import view.PedidoView;
  *
  * @author pet
  */
-public class GerenciarPedidos  implements ActionListener{
+public class GerenciarPedidos implements WindowListener, ActionListener{
    
     protected PedidoView view;
     private final Conexao db;
@@ -56,6 +62,8 @@ public class GerenciarPedidos  implements ActionListener{
                     lista_clientes();
                 else if(1 == index_p)
                     lista_menu();
+                else
+                    lista_pedidos();
                 
                 break;
             case "Limpar":
@@ -80,11 +88,40 @@ public class GerenciarPedidos  implements ActionListener{
             case "Remover":
                 removeSelectedProduct((DefaultTableModel) view.getTabelaPedido_Produtos().getModel());
                 break;
+            case "M":
+                JFrame J = new JFrame(); 
+                J.setLayout(new FlowLayout());
+                J.setSize(view.getWidth()/2, view.getHeight()/2);
+                J.setLocation(view.getWidth()/4, view.getHeight()/4);
+                J.setName("MesasJanela");
+                implantarMesas(J);
+                J.setVisible(true);
+                J.addWindowListener(this);
+                break;
             default:
                 System.out.println(e.getActionCommand() );
                 break;
         }
             
+    }
+    
+    private void implantarMesas(JFrame J){
+        
+    ResultSet query = db.query("SELECT * FROM mesa");
+
+    try {
+        while(query.next()){
+           // row.addRow(new Object[]{query.getInt("idcliente"), query.getString("nome"), query.getString("cpf")});
+           JButton button = new JButton(query.getString("idmesa"));
+           button.setSelected(true);
+           J.add(button);
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(GerenciarPedidos.class.getName()).log(Level.SEVERE, null, ex);
+    } 
+        
+        
+        
     }
     
     public void limparCamposPedido(){
@@ -142,6 +179,29 @@ public class GerenciarPedidos  implements ActionListener{
             while(query.next()){ 
                 String preco = floatFormat.format(query.getObject("preco"));// 0,00    
                 row.addRow(new Object[]{query.getInt("iditem_menu"), query.getString("nome_produto"),preco , query.getBoolean("disponibilidade")});
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GerenciarPedidos.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }
+    
+    //Lista os itens do menu na Tabela Pesquisa
+    public void lista_pedidos(){
+        String where = "";
+        view.getTabelaPedido_Pesquisa().setTabelaPedidos(); //Deixa a tabela no formato do produto
+        DefaultTableModel row = (DefaultTableModel) view.getTabelaPedido_Pesquisa().getModel();
+        
+        String pesquisa = view.getInputPesquisa_Pedido().getText();
+       
+        if(!"".equals(pesquisa)){
+            where = "WHERE idmesa like '%"+pesquisa+"%' or idcliente LIKE '%"+pesquisa+"%'";
+        }
+        
+        ResultSet query = db.query("SELECT * FROM pedido "+ where);
+        
+        try {
+            while(query.next()){   
+                row.addRow(new Object[]{query.getInt("idpedido"),  query.getInt("idcliente"), query.getString("idmesa")});
             }
         } catch (SQLException ex) {
             Logger.getLogger(GerenciarPedidos.class.getName()).log(Level.SEVERE, null, ex);
@@ -221,9 +281,10 @@ public class GerenciarPedidos  implements ActionListener{
      
     
     public void salva_pedido(){
-        int cliente, funcionario, mesa;
+        int cliente, funcionario;
         float pagamento, troco;
-        String data;
+        String data, mesa;
+        
         
         if(   "".equals(view.getInputPedido_Cliente().getText())
            || "".equals(view.getInputPedido_Mesa().getText())){
@@ -232,7 +293,7 @@ public class GerenciarPedidos  implements ActionListener{
 
         cliente = Integer.parseInt(view.getInputPedido_Cliente().getText());
         funcionario = 1;
-        mesa = Integer.parseInt(view.getInputPedido_Mesa().getText());
+        mesa = view.getInputPedido_Mesa().getText();
         data = view.getInputPedido_Data().getText();
         pagamento = view.getInputPedido_Pago().getValue().floatValue();
         troco = view.getInputPedido_Troco().getValue().floatValue();
@@ -286,5 +347,104 @@ public class GerenciarPedidos  implements ActionListener{
             view.getInputPedido_Troco().setValue(new BigDecimal("0.00"));
         }
     }
+
+    @Override
+    public void windowOpened(WindowEvent we) {
+        
+    }
+
+    @Override
+    public void windowClosing(WindowEvent we) {
+        System.out.println(we.getWindow().toString());
+    }
+
+    @Override
+    public void windowClosed(WindowEvent we) {
+        System.out.println(we.getWindow().toString());
+    }
+
+    @Override
+    public void windowIconified(WindowEvent we) {
+         System.out.println(we.getWindow().toString());
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent we) {
+         System.out.println(we.getWindow().toString());
+    }
+
+    @Override
+    public void windowActivated(WindowEvent we) {
+         System.out.println(we.getWindow().toString());
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent we) {
+         System.out.println(we.getWindow().toString());
+    }
+
+    public void setPedidosOnTudo(int index) {
+        
+        String nomeProduto,
+               precoProduto,
+               codigoProduto;
+        
+        Float precoProdutoFloat,
+              precoTotalFloat;
+        
+        DefaultTableModel tablePesquisa = (DefaultTableModel) view.getTabelaPedido_Pesquisa().getModel();
+        DefaultTableModel tableProduto = (DefaultTableModel) view.getTabelaPedido_Produtos().getModel();
+        
+        ResultSet query = db.query("SELECT * FROM pedido  WHERE idpedido="+tablePesquisa.getValueAt(index, 0).toString());
+        
+        
+        try {
+            
+            query.next();
+            
+            view.getInputPedido_Cliente().setText(query.getString("idcliente"));
+            
+            try {
+                view.getInputPedido_Data().setText( dateFormat.parse(query.getString("data")).toString() );
+            } catch (ParseException ex) {
+                Logger.getLogger(GerenciarPedidos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            view.getInputPedido_Mesa().setText(query.getString("idmesa"));
+        } catch (SQLException ex) {
+            Logger.getLogger(GerenciarPedidos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        
+        
+        query = db.query("SELECT * FROM itens_pedidos as ip INNER JOIN menu on ip.iditem_menu=menu.iditem_menu  WHERE idpedido="+tablePesquisa.getValueAt(index, 0).toString());
+        precoTotalFloat = Float.parseFloat("0");
+        
+        try {
+
+            while(query.next()){   
+            
+                      
+                codigoProduto = query.getString("iditem_menu");
+                nomeProduto = query.getString("nome_produto");   
+                precoProduto =  query.getString("preco");
+                precoTotalFloat+=  query.getFloat("preco");
+
+                tableProduto.addRow(new Object[]{codigoProduto,nomeProduto,precoProduto,false});
+
+            
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GerenciarPedidos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        view.getInputPedido_Preco().setValue(new BigDecimal(Float.toString(precoTotalFloat)));
+       
+
+    }
+
+
+
+    
     
 }

@@ -44,6 +44,7 @@ public class PedidoView extends javax.swing.JPanel {
         botaoProduto_Remover.addActionListener(PedidosListener);
         metodoPesquisaPedido.addActionListener(PedidosListener);
         InputPesquisa_Pedido.addActionListener(PedidosListener);
+        botaoMesas.addActionListener(PedidosListener);
         
         TabelaPedido_Pesquisa.addMouseListener(new MouseAdapter() {
             @Override
@@ -58,8 +59,10 @@ public class PedidoView extends javax.swing.JPanel {
                        PedidosListener.setCliente_values(row);
                     }else if("Preço".equals(nome)){
                        PedidosListener.setProdutosOnTable(row);
+                    }else if("Mesas".equals(nome)){
+                        PedidosListener.setPedidosOnTudo(row);
                     }else{
-                        
+                        System.out.println("HA");
                     }
                 }
             }
@@ -154,6 +157,7 @@ public class PedidoView extends javax.swing.JPanel {
         TabelaPedido_Produtos = new javax.swing.JTable();
         InputPedido_Data = new javax.swing.JFormattedTextField();
         botaoProduto_Remover = new javax.swing.JButton();
+        botaoMesas = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         metodoPesquisaPedido = new javax.swing.JComboBox();
@@ -240,6 +244,8 @@ public class PedidoView extends javax.swing.JPanel {
 
         botaoProduto_Remover.setText("Remover");
 
+        botaoMesas.setText("M");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -263,8 +269,11 @@ public class PedidoView extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(InputPedido_Cliente)
-                                    .addComponent(InputPedido_Mesa)
-                                    .addComponent(InputPedido_Data, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(InputPedido_Data, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(InputPedido_Mesa, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(botaoMesas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGap(0, 46, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -285,7 +294,8 @@ public class PedidoView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(InputPedido_Mesa, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(InputPedido_Mesa, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -560,6 +570,7 @@ public class PedidoView extends javax.swing.JPanel {
     private javax.swing.JScrollPane JScrollPane3;
     private view.CustomJTable TabelaPedido_Pesquisa;
     private javax.swing.JTable TabelaPedido_Produtos;
+    private javax.swing.JButton botaoMesas;
     private javax.swing.JButton botaoPedido_Finalizar;
     private javax.swing.JButton botaoPedido_Limpar;
     private javax.swing.JButton botaoPedido_Pesquisar;
