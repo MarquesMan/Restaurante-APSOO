@@ -14,9 +14,10 @@ import javax.management.Query;
  * @author pet
  */
 public class Conexao {
-    public Connection con = null;
+    private Connection con = null;
+    public static Conexao db;
     
-    public Conexao () {
+    private Conexao () {
         System.out.println("Conectando ao banco...");
     
         try {
@@ -34,6 +35,14 @@ public class Conexao {
             System.out.println(e);
             throw new RuntimeException(e);
         }
+    }
+    
+    public static Conexao getConnection(){
+        if(db == null){
+            db = new Conexao();
+        }
+        
+        return db;
     }
     
     public int query_insert(String table, String fields, String values){

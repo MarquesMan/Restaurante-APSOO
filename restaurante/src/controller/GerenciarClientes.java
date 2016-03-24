@@ -33,7 +33,7 @@ public class GerenciarClientes implements ActionListener{
     
     public GerenciarClientes(ClienteView view) {
         this.view = view;
-        this.db = new Conexao();
+        this.db = Conexao.getConnection();
         Date date = new Date();
         view.getInputCliente_Data().setText(dateFormat.format(date));
     }

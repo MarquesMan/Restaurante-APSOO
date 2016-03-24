@@ -34,7 +34,7 @@ public class GerenciarFuncionarios implements ActionListener{
     
     public GerenciarFuncionarios(FuncionarioView view) {
         this.view = view;
-        this.db = new Conexao();
+        this.db = Conexao.getConnection();
         Date date = new Date();
         view.getInputFuncionario_Data().setText(dateFormat.format(date));
     }

@@ -5,25 +5,48 @@
  */
 package model.entitys;
 
+import java.sql.ResultSet;
+
 /**
  *
  * @author pet
  */
 public class Menu {
     
-    private final int iditem_menu;
-    private final String nome_produto;
-    private final String ingredientes;
-    private final Categoria idcategoria;
-    private final float preco;
-    private final float preco_producao;
-    private final boolean disponibilidade;
+    private int iditem_menu;
+    private String nome_produto;
+    private String ingredientes;
+    private Categoria categoria;
+    private float preco;
+    private float preco_producao;
+    private boolean disponibilidade;
 
-    public Menu(int iditem_menu, String nome_produto, String ingredientes, Categoria idcategoria, float preco, float preco_producao, boolean disponibilidade) {
+    
+    public Menu() {
+        this.iditem_menu = 0;
+        this.nome_produto = "";
+        this.ingredientes = "";
+        this.categoria = new Categoria();
+        this.preco = 0;
+        this.preco_producao = 0;
+        this.disponibilidade = true;
+    }
+    
+    public Menu(int iditem_menu, String nome_produto, String ingredientes, Categoria categoria, float preco, float preco_producao, boolean disponibilidade) {
         this.iditem_menu = iditem_menu;
         this.nome_produto = nome_produto;
         this.ingredientes = ingredientes;
-        this.idcategoria = idcategoria;
+        this.categoria = categoria;
+        this.preco = preco;
+        this.preco_producao = preco_producao;
+        this.disponibilidade = disponibilidade;
+    }
+    
+    public Menu(String nome_produto, String ingredientes, Categoria categoria, float preco, float preco_producao, boolean disponibilidade) {
+        this.iditem_menu = 0;
+        this.nome_produto = nome_produto;
+        this.ingredientes = ingredientes;
+        this.categoria = categoria;
         this.preco = preco;
         this.preco_producao = preco_producao;
         this.disponibilidade = disponibilidade;
@@ -41,8 +64,8 @@ public class Menu {
         return ingredientes;
     }
 
-    public Categoria getIdcategoria() {
-        return idcategoria;
+    public Categoria getCategoria() {
+        return categoria;
     }
 
     public float getPreco() {
@@ -56,5 +79,34 @@ public class Menu {
     public boolean isDisponibilidade() {
         return disponibilidade;
     }
+
+    public void setIditem_menu(int iditem_menu) {
+        this.iditem_menu = iditem_menu;
+    }
+
+    public void setNome_produto(String nome_produto) {
+        this.nome_produto = nome_produto;
+    }
+
+    public void setIngredientes(String ingredientes) {
+        this.ingredientes = ingredientes;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public void setPreco(float preco) {
+        this.preco = preco;
+    }
+
+    public void setPreco_producao(float preco_producao) {
+        this.preco_producao = preco_producao;
+    }
+
+    public void setDisponibilidade(boolean disponibilidade) {
+        this.disponibilidade = disponibilidade;
+    }
+    
     
 }

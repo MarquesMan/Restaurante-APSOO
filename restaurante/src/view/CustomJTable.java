@@ -64,7 +64,7 @@ public class CustomJTable extends JTable {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Float.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false
@@ -93,7 +93,7 @@ public class CustomJTable extends JTable {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class,java.lang.Integer.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                false, false, false

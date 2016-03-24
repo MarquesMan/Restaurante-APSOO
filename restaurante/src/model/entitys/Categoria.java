@@ -11,8 +11,23 @@ package model.entitys;
  */
 public class Categoria {
     
-    private final int idcategoria;
-    private final String nome;
+    private int idcategoria;
+    private String nome;
+
+    public Categoria() {
+        this.idcategoria = 0;
+        this.nome = "";
+    }
+    
+    public Categoria(int idcategoria, String nome) {
+        this.idcategoria = idcategoria;
+        this.nome = nome;
+    }
+    
+    public Categoria(String nome) {
+        this.idcategoria = 0;
+        this.nome = nome;
+    }
 
     public int getIdcategoria() {
         return idcategoria;
@@ -22,8 +37,12 @@ public class Categoria {
         return nome;
     }
 
-    public Categoria(int idcategoria, String nome) {
+    public void setIdcategoria(int idcategoria) {
         this.idcategoria = idcategoria;
+    }
+
+    public void setNome(String nome) {
         this.nome = nome;
     }
+    
 }

@@ -11,12 +11,24 @@ package model.entitys;
  */
 public class Itens_pedidos {
     
-    private final int iditens_pedidos;
-    private final Pedido idpedido;
-    private final Menu iditem_menu;
+    private int iditens_pedidos;
+    private Pedido idpedido;
+    private Menu iditem_menu;
 
+    public Itens_pedidos() {
+        this.iditens_pedidos = 0;
+        this.idpedido = new Pedido();
+        this.iditem_menu = new Menu();
+    }
+    
     public Itens_pedidos(int iditens_pedidos, Pedido idpedido, Menu iditem_menu) {
         this.iditens_pedidos = iditens_pedidos;
+        this.idpedido = idpedido;
+        this.iditem_menu = iditem_menu;
+    }
+    
+    public Itens_pedidos(Pedido idpedido, Menu iditem_menu) {
+        this.iditens_pedidos = 0;
         this.idpedido = idpedido;
         this.iditem_menu = iditem_menu;
     }
@@ -32,5 +44,19 @@ public class Itens_pedidos {
     public Menu getIditem_menu() {
         return iditem_menu;
     }
+
+    public void setIditens_pedidos(int iditens_pedidos) {
+        this.iditens_pedidos = iditens_pedidos;
+    }
+
+    public void setIdpedido(Pedido idpedido) {
+        this.idpedido = idpedido;
+    }
+
+    public void setIditem_menu(Menu iditem_menu) {
+        this.iditem_menu = iditem_menu;
+    }
+    
+    
     
 }

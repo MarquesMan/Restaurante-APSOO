@@ -5,18 +5,32 @@
  */
 package model.entitys;
 
+import java.util.Date;
+
 /**
  *
  * @author pet
  */
 public class Cliente extends Pessoa{
     
-    private final int idcliente;
-    private final String data_cadastro;
+    private int idcliente;
+    private Date data_cadastro;
 
-    public Cliente(int idcliente, String data_cadastro, int idpessoa, String nome, String cpf, String telefone) {
+    public Cliente() {
+        super();
+        this.idcliente = 0;
+        this.data_cadastro = new Date();
+    }
+    
+    public Cliente(int idcliente, Date data_cadastro, int idpessoa, String nome, String cpf, String telefone) {
         super(idpessoa, nome, cpf, telefone);
         this.idcliente = idcliente;
+        this.data_cadastro = data_cadastro;
+    }
+    
+    public Cliente(Date data_cadastro, String nome, String cpf, String telefone) {
+        super(0, nome, cpf, telefone);
+        this.idcliente = 0;
         this.data_cadastro = data_cadastro;
     }
 
@@ -24,8 +38,15 @@ public class Cliente extends Pessoa{
         return idcliente;
     }
 
-    public String getData_cadastro() {
+    public Date getData_cadastro() {
         return data_cadastro;
     }
-    
+
+    public void setIdcliente(int idcliente) {
+        this.idcliente = idcliente;
+    }
+
+    public void setData_cadastro(Date data_cadastro) {
+        this.data_cadastro = data_cadastro;
+    }   
 }

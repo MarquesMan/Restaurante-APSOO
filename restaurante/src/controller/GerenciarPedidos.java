@@ -19,6 +19,7 @@ import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,6 +29,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import model.Conexao;
+import model.GerenciarPedidosModel;
+import model.entitys.Cliente;
+import model.entitys.Menu;
+import model.entitys.Pedido;
 import view.PedidoView;
 
 /**
@@ -37,13 +42,24 @@ import view.PedidoView;
 public class GerenciarPedidos implements WindowListener, ActionListener{
    
     protected PedidoView view;
+    private final GerenciarPedidosModel pedidosModel;
     private final Conexao db;
     private final DecimalFormat floatFormat = new DecimalFormat("0.00");
     private final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     
+    
+    private Pedido pedido;
+    private ArrayList<Menu> itens_menu;
+    private ArrayList<Cliente> clientes;
+    private ArrayList<Pedido> pedidos_pendentes; 
+    
     public GerenciarPedidos(PedidoView view) {
         this.view = view;
-        this.db = new Conexao();
+        this.db = Conexao.getConnection();
+        this.pedido = new Pedido();
+        this.itens_menu = new ArrayList<Menu>();
+        this.pedidosModel = new GerenciarPedidosModel();
+        this.pedidos_pendentes = new ArrayList<>();
     }
     
     //Identifica os eventos dos botões e xecuta a açao correspondente
@@ -207,74 +223,55 @@ public class GerenciarPedidos implements WindowListener, ActionListener{
     }
     
     //Lista os clientes na Tabela Pesquisa
-    public void lista_clientes(){
-        
+    public void lista_clientes(){       
         view.getTabelaPedido_Pesquisa().setTabelaCliente(); 
         
-        String where = "";
         DefaultTableModel row = (DefaultTableModel) view.getTabelaPedido_Pesquisa().getModel();
-        int rowCount = row.getRowCount();
+        row.setRowCount(0);
 
-        clear_row(row);
+        clientes = pedidosModel.listaCliente(view.getInputPesquisa_Pedido().getText());
+  
         
-        String pesquisa = view.getInputPesquisa_Pedido().getText();
-        if(!"".equals(pesquisa)){
-            where = "WHERE nome like '%"+pesquisa+"%' or cpf LIKE '%"+pesquisa+"%'";
+        for(int i = 0; i < clientes.size(); i++){
+            row.addRow(new Object[]{clientes.get(i).getIdcliente(),
+                                    clientes.get(i).getNome(),
+                                    clientes.get(i).getCpf()});
         }
-        ResultSet query = db.query("SELECT * FROM cliente INNER JOIN pessoa ON  cliente.idpessoa = pessoa.idpessoa "+ where);
-        
-        try {
-            while(query.next()){
-                row.addRow(new Object[]{query.getInt("idcliente"), query.getString("nome"), query.getString("cpf")});
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(GerenciarPedidos.class.getName()).log(Level.SEVERE, null, ex);
-        } 
     }
+    
     
     //Lista os itens do menu na Tabela Pesquisa
     public void lista_menu(){
-        String where = "";
         view.getTabelaPedido_Pesquisa().setTabelaProduto(); //Deixa a tabela no formato do produto
-        DefaultTableModel row = (DefaultTableModel) view.getTabelaPedido_Pesquisa().getModel();
         
-        String pesquisa = view.getInputPesquisa_Pedido().getText();
-        if(!"".equals(pesquisa)){
-            where = "WHERE nome_produto like '%"+pesquisa+"%' or iditem_menu LIKE '%"+pesquisa+"%'";
+        DefaultTableModel menu_table = (DefaultTableModel) view.getTabelaPedido_Pesquisa().getModel();
+        menu_table.setRowCount(0);
+        
+        itens_menu =  pedidosModel.listaItensMenu(view.getInputPesquisa_Pedido().getText());
+       
+        for(int i = 0; i < itens_menu.size(); i++){
+            menu_table.addRow(new Object[]{itens_menu.get(i).getIditem_menu(),
+                                    itens_menu.get(i).getNome_produto(),
+                                    itens_menu.get(i).getPreco(),
+                                    itens_menu.get(i).isDisponibilidade()});
         }
-        ResultSet query = db.query("SELECT * FROM menu "+ where);
-        
-        try {
-            while(query.next()){ 
-                String preco = floatFormat.format(query.getObject("preco"));// 0,00    
-                row.addRow(new Object[]{query.getInt("iditem_menu"), query.getString("nome_produto"),preco , query.getBoolean("disponibilidade")});
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(GerenciarPedidos.class.getName()).log(Level.SEVERE, null, ex);
-        } 
     }
+    
     
     //Lista os itens do menu na Tabela Pesquisa
     public void lista_pedidos(){
-        String where = "";
         view.getTabelaPedido_Pesquisa().setTabelaPedidos(); //Deixa a tabela no formato do produto
-        DefaultTableModel row = (DefaultTableModel) view.getTabelaPedido_Pesquisa().getModel();
         
-        String pesquisa = view.getInputPesquisa_Pedido().getText();
-       
-        if(!"".equals(pesquisa)){
-            where = "WHERE idmesa like '%"+pesquisa+"%' or idcliente LIKE '%"+pesquisa+"%'";
+        DefaultTableModel pedidos_table = (DefaultTableModel) view.getTabelaPedido_Pesquisa().getModel();
+        pedidos_table.setRowCount(0);
+        
+        pedidos_pendentes = pedidosModel.listaPedidos(view.getInputPesquisa_Pedido().getText());
+
+        for(int i = 0; i < pedidos_pendentes.size(); i++){
+            pedidos_table.addRow(new Object[]{pedidos_pendentes.get(i).getIdpedido(),
+                                              pedidos_pendentes.get(i).getCliente().getNome(),
+                                              pedidos_pendentes.get(i).getMesasString()});
         }
-        
-        ResultSet query = db.query("SELECT * FROM pedido "+ where);
-        
-        try {
-            while(query.next()){   
-                row.addRow(new Object[]{query.getInt("idpedido"),  query.getInt("idcliente"), query.getString("idmesa")});
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(GerenciarPedidos.class.getName()).log(Level.SEVERE, null, ex);
-        } 
     }
     
     //Pega os valores do cliente na Tabela de Pesquisa e insere seu codigo no campo Cliente do pedido
@@ -527,7 +524,7 @@ public class GerenciarPedidos implements WindowListener, ActionListener{
 
     private void finalizar() {
 
-        int cliente, funcionario;
+        /*int cliente, funcionario;
         float pagamento, troco;
         String data, mesa;
         
@@ -553,7 +550,7 @@ public class GerenciarPedidos implements WindowListener, ActionListener{
             String mysqlString = to.format(date);     // 2014-02-01
       
             int id_pedido = db.query_update("pedido_finalizados", "idcliente, idfuncionario, idmesa, data, pagamento, troco",
-                            cliente+", "+funcionario+", '"+mesa+"', '"+mysqlString+"', "+pagamento+", "+troco, "idpedido="+);
+                           cliente+", "+funcionario+", '"+mesa+"', '"+mysqlString+"', "+pagamento+", "+troco, "idpedido="+);
         
             //Erro na inserção
             if(id_pedido == 0){
@@ -573,7 +570,7 @@ public class GerenciarPedidos implements WindowListener, ActionListener{
             
         } catch (ParseException ex) {
             Logger.getLogger(GerenciarPedidos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
 
     }
 

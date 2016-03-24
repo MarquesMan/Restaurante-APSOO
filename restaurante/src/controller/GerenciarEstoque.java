@@ -27,7 +27,7 @@ public class GerenciarEstoque {
     
     public GerenciarEstoque(EstoqueView view) {
         this.view = view;
-        this.db = new Conexao();
+        this.db = Conexao.getConnection();
         Date date = new Date();
         today.set(Calendar.HOUR_OF_DAY, 0); // same for minutes and seconds
     }
