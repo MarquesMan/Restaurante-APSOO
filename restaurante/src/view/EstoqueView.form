@@ -71,12 +71,15 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="SelectProduto_Categoria" pref="328" max="32767" attributes="0"/>
-                          <Component id="InputProduto_Nome" max="32767" attributes="0"/>
-                          <Component id="InputProduto_Quantidade" alignment="1" max="32767" attributes="0"/>
+                      <Component id="botaoProduto_Salvar" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                          <Component id="InputProduto_Quantidade" min="-2" pref="328" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="SelectProduto_Categoria" pref="328" max="32767" attributes="0"/>
+                              <Component id="InputProduto_Nome" max="32767" attributes="0"/>
+                              <Component id="InputProduto_Codigo" alignment="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
-                      <Component id="botaoProduto_Salvar" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
               </Group>
@@ -85,7 +88,9 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                  <Component id="InputProduto_Codigo" min="-2" pref="32" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="InputProduto_Nome" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -95,17 +100,17 @@
                       <Component id="SelectProduto_Categoria" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="InputProduto_Quantidade" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="InputProduto_Quantidade" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="botaoProduto_Salvar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="botaoProduto_Limpar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="59" max="32767" attributes="0"/>
+                  <EmptySpace pref="74" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -159,6 +164,8 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoProduto_SalvarActionPerformed"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JTextField" name="InputProduto_Codigo">
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel9">
@@ -178,29 +185,42 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace pref="6" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="botaoItem_Limpar" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="InputItem_Lote" alignment="0" pref="328" max="32767" attributes="0"/>
-                              <Component id="InputItem_Quantidade" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="botaoItem_Limpar" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="InputItem_Produto" min="-2" pref="328" max="-2" attributes="0"/>
                               <Component id="botaoItem_Salvar" min="-2" max="-2" attributes="0"/>
                               <Component id="InputItem_Validade" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel6" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel7" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="label14" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jlabel15" alignment="1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="InputItem_Lote" alignment="0" max="32767" attributes="0"/>
+                              <Component id="InputItem_Quantidade" alignment="0" max="32767" attributes="0"/>
+                              <Component id="InputItem_Codigo" alignment="0" max="32767" attributes="0"/>
+                              <Component id="InputItem_Marca" alignment="0" max="32767" attributes="0"/>
+                              <Component id="InputItem_Preco" alignment="0" min="-2" pref="328" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -231,12 +251,24 @@
                       <Component id="InputItem_Quantidade" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="botaoItem_Limpar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="botaoItem_Salvar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="InputItem_Marca" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                      <Component id="label14" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="InputItem_Preco" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                      <Component id="jlabel15" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="InputItem_Codigo" min="-2" pref="32" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="botaoItem_Limpar" min="-2" max="-2" attributes="0"/>
+                      <Component id="botaoItem_Salvar" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -285,6 +317,25 @@
           </Events>
         </Component>
         <Component class="datechooser.beans.DateChooserCombo" name="InputItem_Validade">
+        </Component>
+        <Component class="javax.swing.JTextField" name="InputItem_Codigo">
+        </Component>
+        <Component class="javax.swing.JTextField" name="InputItem_Marca">
+        </Component>
+        <Component class="javax.swing.JLabel" name="label14">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Marca :"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jlabel15">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Pre&#xe7;o :"/>
+          </Properties>
+        </Component>
+        <Component class="view.JNumberFormatField" name="InputItem_Preco">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

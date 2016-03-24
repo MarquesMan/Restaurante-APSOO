@@ -25,6 +25,8 @@ public class EstoqueView extends javax.swing.JPanel {
      */
     public EstoqueView() {
         initComponents();
+        InputProduto_Codigo.setVisible(false);
+        InputItem_Codigo.setVisible(false);
         
         EstoqueListener = new GerenciarEstoque(this);
         
@@ -73,6 +75,7 @@ public class EstoqueView extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         botaoProduto_Limpar = new javax.swing.JButton();
         botaoProduto_Salvar = new javax.swing.JButton();
+        InputProduto_Codigo = new javax.swing.JTextField();
         jPanel9 = new javax.swing.JPanel();
         InputItem_Produto = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -84,6 +87,11 @@ public class EstoqueView extends javax.swing.JPanel {
         botaoItem_Limpar = new javax.swing.JButton();
         botaoItem_Salvar = new javax.swing.JButton();
         InputItem_Validade = new datechooser.beans.DateChooserCombo();
+        InputItem_Codigo = new javax.swing.JTextField();
+        InputItem_Marca = new javax.swing.JTextField();
+        label14 = new javax.swing.JLabel();
+        jlabel15 = new javax.swing.JLabel();
+        InputItem_Preco = new view.JNumberFormatField();
         jPanel1 = new javax.swing.JPanel();
         InputPesquisa_Nome = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -142,17 +150,21 @@ public class EstoqueView extends javax.swing.JPanel {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(SelectProduto_Categoria, 0, 328, Short.MAX_VALUE)
-                        .addComponent(InputProduto_Nome)
-                        .addComponent(InputProduto_Quantidade, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addComponent(botaoProduto_Salvar))
+                    .addComponent(botaoProduto_Salvar)
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(InputProduto_Quantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(SelectProduto_Categoria, 0, 328, Short.MAX_VALUE)
+                            .addComponent(InputProduto_Nome)
+                            .addComponent(InputProduto_Codigo))))
                 .addGap(46, 46, 46))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(8, 8, 8)
+                .addComponent(InputProduto_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(InputProduto_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -160,15 +172,15 @@ public class EstoqueView extends javax.swing.JPanel {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SelectProduto_Categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(18, 18, 18)
+                .addGap(15, 15, 15)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(InputProduto_Quantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(60, 60, 60)
+                    .addComponent(jLabel3)
+                    .addComponent(InputProduto_Quantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(48, 48, 48)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoProduto_Salvar)
                     .addComponent(botaoProduto_Limpar))
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Itens", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
@@ -195,6 +207,12 @@ public class EstoqueView extends javax.swing.JPanel {
             }
         });
 
+        label14.setText("Marca :");
+
+        jlabel15.setText("Preço :");
+
+        InputItem_Preco.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -202,25 +220,35 @@ public class EstoqueView extends javax.swing.JPanel {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(InputItem_Lote, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
-                            .addComponent(InputItem_Quantidade, javax.swing.GroupLayout.Alignment.LEADING)))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(botaoItem_Limpar)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addGap(62, 62, 62)
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botaoItem_Limpar)
+                                .addGap(4, 4, 4)))
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(InputItem_Produto, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(botaoItem_Salvar)
-                            .addComponent(InputItem_Validade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(InputItem_Validade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(label14, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jlabel15, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(InputItem_Lote, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(InputItem_Quantidade, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(InputItem_Codigo, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(InputItem_Marca, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(InputItem_Preco, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(54, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
@@ -242,11 +270,21 @@ public class EstoqueView extends javax.swing.JPanel {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(InputItem_Quantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addGap(64, 64, 64)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(InputItem_Marca, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(InputItem_Preco, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlabel15))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(InputItem_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botaoItem_Limpar)
                     .addComponent(botaoItem_Salvar))
-                .addGap(65, 65, 65))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
@@ -455,6 +493,23 @@ public class EstoqueView extends javax.swing.JPanel {
         EstoqueListener.Pesquisar();
     }//GEN-LAST:event_botaoPesquisa_PesquisarActionPerformed
 
+    public JTextField getInputItem_Marca() {
+        return InputItem_Marca;
+    }
+
+    public JNumberFormatField getInputItem_Preco() {
+        return InputItem_Preco;
+    }
+
+    public JTextField getInputItem_Codigo() {
+        return InputItem_Codigo;
+    }
+
+    public JTextField getInputProduto_Codigo() {
+        return InputProduto_Codigo;
+    }
+
+    
     public JTextField getInputItem_Lote() {
         return InputItem_Lote;
     }
@@ -512,13 +567,17 @@ public class EstoqueView extends javax.swing.JPanel {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField InputItem_Codigo;
     private javax.swing.JTextField InputItem_Lote;
+    private javax.swing.JTextField InputItem_Marca;
+    private view.JNumberFormatField InputItem_Preco;
     private javax.swing.JTextField InputItem_Produto;
     private javax.swing.JTextField InputItem_Quantidade;
     private datechooser.beans.DateChooserCombo InputItem_Validade;
     private javax.swing.JTextField InputPesquisa_Lote;
     private javax.swing.JTextField InputPesquisa_Nome;
     private datechooser.beans.DateChooserCombo InputPesquisa_Validade;
+    private javax.swing.JTextField InputProduto_Codigo;
     private javax.swing.JTextField InputProduto_Nome;
     private javax.swing.JTextField InputProduto_Quantidade;
     private javax.swing.JComboBox<String> SelectPesquisa;
@@ -550,5 +609,7 @@ public class EstoqueView extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JLabel jlabel15;
+    private javax.swing.JLabel label14;
     // End of variables declaration//GEN-END:variables
 }
