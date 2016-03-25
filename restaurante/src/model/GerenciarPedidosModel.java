@@ -226,7 +226,7 @@ public class GerenciarPedidosModel {
                 current_pedido.setFuncionario(novoFuncionario(query.getInt("idfuncionario")));
                 current_pedido.setItens(listaItensPedidos(current_pedido));
                 current_pedido.setMesas(mesasToArray(query.getString("idmesa")));
-                current_pedido.setPagamento(query.getFloat("pagamento"));
+                current_pedido.setPagamento(Float.parseFloat("0"));
                 current_pedido.setTroco(query.getFloat("troco"));
                 
                 pedidos.add(current_pedido);  
