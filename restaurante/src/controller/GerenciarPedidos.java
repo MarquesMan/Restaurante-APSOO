@@ -396,7 +396,26 @@ public class GerenciarPedidos implements WindowListener, ActionListener{
                 db.query_insert("itens_pedidos", "idpedido, iditem_menu", id_pedido+", "+iditem_menu);
             }
             
+            String[] Mesas = view.getInputPedido_Mesa().getText().split(";");
+            
+            for(int i = 0; i < Mesas.length; ++i){
+                
+                if(!db.query_update("mesa","status = 'ocupado'","idmesa="+Mesas[i])){
+                    return;
+                }
+                
+            }
+            
             limparCamposPedido();
+            
+            int index_p = view.getMetodoPesquisaPedido().getSelectedIndex();
+                
+                if(0 == index_p)
+                    lista_clientes();
+                else if(1 == index_p)
+                    lista_menu();
+                else
+                    lista_pedidos();
             
         } catch (ParseException ex) {
             Logger.getLogger(GerenciarPedidos.class.getName()).log(Level.SEVERE, null, ex);
@@ -609,7 +628,27 @@ public class GerenciarPedidos implements WindowListener, ActionListener{
                     
             }
             
+            String[] Mesas = view.getInputPedido_Mesa().getText().split(";");
+            
+            for(int i = 0; i < Mesas.length; ++i){
+                
+                if(!db.query_update("mesa","status = 'livre'","idmesa="+Mesas[i])){
+
+                    return;
+                }
+                
+            }
+            
             limparCamposPedido();
+            
+            int index_p = view.getMetodoPesquisaPedido().getSelectedIndex();
+                
+                if(0 == index_p)
+                    lista_clientes();
+                else if(1 == index_p)
+                    lista_menu();
+                else
+                    lista_pedidos();
             
         } catch (ParseException ex) {
             Logger.getLogger(GerenciarPedidos.class.getName()).log(Level.SEVERE, null, ex);
