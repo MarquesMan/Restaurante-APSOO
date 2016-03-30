@@ -149,9 +149,9 @@ public class GerenciarFuncionarios implements ActionListener{
         clear_row(row);
         
         String pesquisa = view.getInputPesquisa_Funcionario().getText();
-        if(!"".equals(pesquisa)){
-            where = "WHERE nome like '%"+pesquisa+"%' or cpf LIKE '%"+pesquisa+"%'";
-        }
+        
+        where = "WHERE nome like '%"+pesquisa+"%' or cpf LIKE '%"+pesquisa+"%'";
+        
         ResultSet query = db.query("SELECT * FROM funcionario INNER JOIN pessoa ON  funcionario.idpessoa = pessoa.idpessoa "+ where);
         
         try {

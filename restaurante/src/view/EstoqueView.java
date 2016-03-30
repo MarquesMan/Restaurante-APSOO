@@ -490,7 +490,11 @@ public class EstoqueView extends javax.swing.JPanel {
     }//GEN-LAST:event_botaoPesquisa_LimparActionPerformed
 
     private void botaoPesquisa_PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPesquisa_PesquisarActionPerformed
-        EstoqueListener.Pesquisar();
+        int index = SelectPesquisa.getSelectedIndex();
+        if(index == 0)
+            EstoqueListener.listarProduto();
+        else
+            EstoqueListener.listarItem();
     }//GEN-LAST:event_botaoPesquisa_PesquisarActionPerformed
 
     public JTextField getInputItem_Marca() {
