@@ -211,6 +211,7 @@ public class GerenciarPedidos implements WindowListener, ActionListener{
     
     public void limparCamposPedido(){
         view.getInputPedido_Cliente().setText("");
+        view.getIdPedido().setText("");
         view.getInputPedido_Data().setText("");
         view.getInputPedido_Desconto().setValue(new BigDecimal("0.00"));
         view.getInputPedido_Mesa().setText("");
@@ -320,9 +321,14 @@ public class GerenciarPedidos implements WindowListener, ActionListener{
         
         precoTotalFloat = view.getInputPedido_Preco().getValue().floatValue() + precoProdutoFloat;
         view.getInputPedido_Preco().setValue(new BigDecimal(Float.toString(precoTotalFloat)));
-        
-        tableProduto.addRow(new Object[]{codigoProduto,nomeProduto,precoProduto,false});  
-        
+        if(tableProduto.getRowCount()==0){
+            tableProduto.addRow(new Object[]{"","","",false});
+            tableProduto.addRow(new Object[]{codigoProduto,nomeProduto,precoProduto,false});  
+            tableProduto.removeRow(0);
+        }else{
+            tableProduto.addRow(new Object[]{codigoProduto,nomeProduto,precoProduto,false});  
+        }
+            
     }
     
 
@@ -362,7 +368,7 @@ public class GerenciarPedidos implements WindowListener, ActionListener{
         funcionario = 1;
         mesa = view.getInputPedido_Mesa().getText();
         data = view.getInputPedido_Data().getText();
-        pagamento = view.getInputPedido_Pago().getValue().floatValue();
+        
         troco = view.getInputPedido_Troco().getValue().floatValue();
         
         SimpleDateFormat from = new SimpleDateFormat("dd/MM/yyyy");
@@ -373,8 +379,8 @@ public class GerenciarPedidos implements WindowListener, ActionListener{
             date = from.parse(data); // 01/02/2014
             String mysqlString = to.format(date);     // 2014-02-01
       
-            int id_pedido = db.query_insert("pedido", "idcliente, idfuncionario, idmesa, data, pagamento, troco",
-                            cliente+", "+funcionario+", '"+mesa+"', '"+mysqlString+"', "+pagamento+", "+troco);
+            int id_pedido = db.query_insert("pedido", "idcliente, idfuncionario, idmesa, data, tipo_pagamento, troco",
+                            cliente+", "+funcionario+", '"+mesa+"', '"+mysqlString+"', "+0+", "+troco);
         
             //Erro na inserção
             if(id_pedido == 0){
@@ -390,7 +396,26 @@ public class GerenciarPedidos implements WindowListener, ActionListener{
                 db.query_insert("itens_pedidos", "idpedido, iditem_menu", id_pedido+", "+iditem_menu);
             }
             
+            String[] Mesas = view.getInputPedido_Mesa().getText().split(";");
+            
+            for(int i = 0; i < Mesas.length; ++i){
+                
+                if(!db.query_update("mesa","status = 'ocupado'","idmesa="+Mesas[i])){
+                    return;
+                }
+                
+            }
+            
             limparCamposPedido();
+            
+            int index_p = view.getMetodoPesquisaPedido().getSelectedIndex();
+                
+                if(0 == index_p)
+                    lista_clientes();
+                else if(1 == index_p)
+                    lista_menu();
+                else
+                    lista_pedidos();
             
         } catch (ParseException ex) {
             Logger.getLogger(GerenciarPedidos.class.getName()).log(Level.SEVERE, null, ex);
@@ -515,6 +540,8 @@ public class GerenciarPedidos implements WindowListener, ActionListener{
                 }
             }
             
+            view.getIdPedido().setText(tablePesquisa.getValueAt(index, 0).toString());
+            
             tableProduto.removeRow(0);
         } catch (SQLException ex) {
             Logger.getLogger(GerenciarPedidos.class.getName()).log(Level.SEVERE, null, ex);
@@ -524,10 +551,10 @@ public class GerenciarPedidos implements WindowListener, ActionListener{
 
     private void finalizar() {
 
-        /*int cliente, funcionario;
-        float pagamento, troco;
-        String data, mesa;
-        
+        int cliente, funcionario;
+        float pagamento, troco, total;
+        String data, mesa, idpedido;
+        Map<String, String[]> produtos = new HashMap<>();
         
         if(   "".equals(view.getInputPedido_Cliente().getText())
            || "".equals(view.getInputPedido_Mesa().getText())){
@@ -536,41 +563,96 @@ public class GerenciarPedidos implements WindowListener, ActionListener{
 
         cliente = Integer.parseInt(view.getInputPedido_Cliente().getText());
         funcionario = 1;
+        idpedido = view.getIdPedido().getText();
         mesa = view.getInputPedido_Mesa().getText();
         data = view.getInputPedido_Data().getText();
-        pagamento = view.getInputPedido_Pago().getValue().floatValue();
+        pagamento = 0;
         troco = view.getInputPedido_Troco().getValue().floatValue();
-        
+        total = view.getInputPedido_Preco().getValue().floatValue();
         SimpleDateFormat from = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat to = new SimpleDateFormat("yyyy-MM-dd");
         Date date;
+        
         try {
             
             date = from.parse(data); // 01/02/2014
             String mysqlString = to.format(date);     // 2014-02-01
-      
-            int id_pedido = db.query_update("pedido_finalizados", "idcliente, idfuncionario, idmesa, data, pagamento, troco",
-                           cliente+", "+funcionario+", '"+mesa+"', '"+mysqlString+"', "+pagamento+", "+troco, "idpedido="+);
-        
-            //Erro na inserção
-            if(id_pedido == 0){
+            
+            if(!idpedido.equals("")){
+                
+                
+                boolean id_pedido_b = db.query_delete("itens_pedidos", "idpedido="+idpedido);
+                System.out.println(id_pedido_b);
+                //Erro na inserção
+                //if(!id_pedido_b){
+                //    return;
+                //}
+                
+                id_pedido_b = db.query_delete("pedido", "idpedido="+idpedido);
+
+                //Erro na inserção
+                if(!id_pedido_b){
+                    return;
+                }
+                
+                
+            }
+            
+            int id_pedido_i = db.query_insert("pedidos_finalizados", "idcliente, idfuncionario, idmesa, data, tipo_pagamento, troco, total",cliente+", "+funcionario+", '"+mesa+"', '"+mysqlString+"', '"+pagamento+"', '"+troco+"', '"+total+"'");
+            
+            if(id_pedido_i==0){
                 return;
             }
+            
+            ResultSet query_p = db.query("SELECT * FROM menu");
+            
+            
+            //Erro na inserção
+
+            try {
+                while(query_p.next()){//                                                        nome_produto,           ingredientes,           categoria,                           preco,                             preco_producao
+                  produtos.put(query_p.getString("iditem_menu"), new String[]{query_p.getString("nome_produto"),query_p.getString("ingredientes"), query_p.getString("idcategoria"), query_p.getString("preco"), query_p.getString("preco_producao")});
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(GerenciarPedidos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         
             DefaultTableModel tabela_produtos = (DefaultTableModel) view.getTabelaPedido_Produtos().getModel();
             int rowCount = tabela_produtos.getRowCount();
      
             for(int i = 0; i < rowCount; i++){
-                int iditem_menu = Integer.parseInt(tabela_produtos.getValueAt(i, 0).toString());
+                String iditem_menu = tabela_produtos.getValueAt(i, 0).toString();
+                db.query_insert("itens_pedidos_finalizados", "idpedido_finalizado, nome_produto, ingredientes, categoria, preco, preco_producao",
+                                                            "'"+id_pedido_i+"', '"+produtos.get( iditem_menu )[0]+"', '"+produtos.get( iditem_menu )[1]+"' , '"+produtos.get( iditem_menu )[2]+"', '"+produtos.get( iditem_menu )[3]+"', '"+produtos.get( iditem_menu )[4]+"'" );
+                    
+            }
             
-                db.query_insert("itens_pedidos", "idpedido, iditem_menu", id_pedido+", "+iditem_menu);
+            String[] Mesas = view.getInputPedido_Mesa().getText().split(";");
+            
+            for(int i = 0; i < Mesas.length; ++i){
+                
+                if(!db.query_update("mesa","status = 'livre'","idmesa="+Mesas[i])){
+
+                    return;
+                }
+                
             }
             
             limparCamposPedido();
             
+            int index_p = view.getMetodoPesquisaPedido().getSelectedIndex();
+                
+                if(0 == index_p)
+                    lista_clientes();
+                else if(1 == index_p)
+                    lista_menu();
+                else
+                    lista_pedidos();
+            
         } catch (ParseException ex) {
             Logger.getLogger(GerenciarPedidos.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        }
 
     }
 

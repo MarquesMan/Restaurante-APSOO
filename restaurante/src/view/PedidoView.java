@@ -42,7 +42,7 @@ public class PedidoView extends javax.swing.JPanel {
         metodoPesquisaPedido.addActionListener(PedidosListener);
         InputPesquisa_Pedido.addActionListener(PedidosListener);
         botaoMesas.addActionListener(PedidosListener);
-        idPedido.setVisible(false);
+        //idPedido.setVisible(false);
         TabelaPedido_Pesquisa.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent me) {
@@ -73,6 +73,10 @@ public class PedidoView extends javax.swing.JPanel {
 
         TableColumn tc = TabelaPedido_Produtos.getColumnModel().getColumn(3);
         tc.setHeaderRenderer(new SelectAllHeader(TabelaPedido_Produtos, 3));
+    }
+
+    public JTextField getIdPedido() {
+        return idPedido;
     }
 
     public JTextField getInputPedido_Cliente() {
