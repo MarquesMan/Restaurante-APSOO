@@ -173,7 +173,6 @@ public class GerenciarFuncionarios implements ActionListener{
     
     public void setFuncionario_values(int index){
         String where = "";
-        String pesquisa = view.getInputPesquisa_Funcionario().getText();
         
         DefaultTableModel row = (DefaultTableModel) view.getjTable1().getModel();
         
